@@ -12,234 +12,267 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #f4f4f4; /* Light text color for contrast */
-            background-color: #121212; /* Dark background color */
-        }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #f4f4f4; /* Light text color for contrast */
+    background-color: #121212; /* Dark background color */
+}
 
-        .container {
-            display: flex;
-            height: 100vh;
-        }
+.container {
+    display: flex;
+    height: 100vh;
+}
 
-        .sidebar {
-            width: 20%;
-            background-color: #1e1e1e; /* Dark sidebar background */
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.3); /* Slightly darker shadow */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+.sidebar {
+    width: 20%;
+    background-color: #1e1e1e; /* Dark sidebar background */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3); /* Slightly darker shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-        .sidebar-content {
-            flex: 1;
-            overflow-y: auto;
-        }
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+}
 
-        .sidebar a {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-            color: #e0e0e0; /* Light text color for links */
-            text-decoration: none;
-            cursor: pointer;
-        }
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #e0e0e0; /* Light text color for links */
+    text-decoration: none;
+    cursor: pointer;
+}
 
-        .sidebar a:hover {
-            background-color: #333; /* Darker background on hover */
-        }
+.sidebar a:hover {
+    background-color: #333; /* Darker background on hover */
+}
 
-        .sidebar a .edit-icon, 
-        .sidebar a .delete-icon {
-            margin-left: 3px; /* Change this value if needed */
-        }
+.sidebar a .edit-icon, 
+.sidebar a .delete-icon {
+    margin-left: 3px; /* Значение можно изменить по вашему усмотрению */
+}
 
-        .sidebar .edit-icon, .sidebar .delete-icon {
-            color: #80cbc4; /* Light teal color for icons */
-        }
+.sidebar .edit-icon, .sidebar .delete-icon {
+    color: #80cbc4; /* Light teal color for icons */
+}
 
-        .sidebar .edit-icon:hover {
-            color: #4db6ac; /* Darker teal color on hover */
-        }
+.sidebar .edit-icon:hover {
+    color: #4db6ac; /* Darker teal color on hover */
+}
 
-        .sidebar .delete-icon {
-            color: #ff5252; /* Light red color for delete icon */
-        }
+.sidebar .delete-icon {
+    color: #ff5252; /* Light red color for delete icon */
+}
 
-        .sidebar .delete-icon:hover {
-            color: #e57373; /* Darker red color on hover */
-        }
+.sidebar .delete-icon:hover {
+    color: #e57373; /* Darker red color on hover */
+}
 
-        .input-area {
-            margin-top: 20px;
-        }
+.input-area {
+    margin-top: 20px;
+}
 
-        .input-area input, .input-area textarea {
-            width: 100%;
-            margin: 5px 0;
-            padding: 10px;
-            box-sizing: border-box;
-            background-color: #333; /* Dark input background */
-            color: #e0e0e0; /* Light text color */
-            border: 1px solid #444; /* Slightly lighter border */
-        }
+.input-area input, .input-area textarea {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #333; /* Dark input background */
+    color: #e0e0e0; /* Light text color */
+    border: 1px solid #444; /* Slightly lighter border */
+}
 
-        .input-area button {
-            padding: 10px;
-            background-color: #555; /* Dark button background */
-            color: #f4f4f4; /* Light text color */
-            border: none;
-            cursor: pointer;
-        }
+.input-area button {
+    padding: 10px;
+    background-color: #555; /* Dark button background */
+    color: #f4f4f4; /* Light text color */
+    border: none;
+    cursor: pointer;
+}
 
-        .input-area button:hover {
-            background-color: #666; /* Slightly lighter button background on hover */
-        }
+.input-area button:hover {
+    background-color: #666; /* Slightly lighter button background on hover */
+}
 
-        .content {
-            width: 80%;
-            padding: 20px;
-            background-color: #1e1e1e; /* Dark content background */
-            overflow-y: auto;
-        }
+.content {
+    width: 80%;
+    padding: 20px;
+    background-color: #1e1e1e; /* Dark content background */
+    overflow-y: auto;
+}
 
-        .section {
-            display: none;
-        }
+.section {
+    display: none;
+}
 
-        .section.active {
-            display: block;
-        }
+.section.active {
+    display: block;
+}
 
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8); /* Darker background for modal */
-        }
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background for modal */
+}
 
-        .modal-content {
-            background-color: #1e1e1e; /* Dark modal background */
-            margin: 5% auto; /* Adjusted margin for better centering */
-            padding: 20px;
-            border: 1px solid #444; /* Slightly lighter border */
-            width: 98%; /* Increased width */
-            max-width: 1200px; /* Increased maximum width */
-            max-height: 90%; /* Increased maximum height */
-            overflow-y: auto; /* Enable vertical scrolling if content is too long */
-        }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background for modal */
+}
 
-        .modal h2 {
-            color: #e0e0e0; /* Light color for heading */
-            margin-bottom: 25px; /* Added bottom margin for spacing */
-        }
+.modal-content {
+    background-color: #1e1e1e; /* Dark modal background */
+    margin: 5% auto; /* Adjusted margin for better centering */
+    padding: 20px;
+    border: 1px solid #444; /* Slightly lighter border */
+    width: 98%; /* Increased width */
+    max-width: 1200px; /* Increased maximum width */
+    max-height: 90%; /* Increased maximum height */
+    overflow-y: auto; /* Enable vertical scrolling if content is too long */
+}
 
-        .modal input, .modal textarea {
-            background-color: #333; /* Dark background for inputs in modal */
-            color: #e0e0e0; /* Light text color for inputs in modal */
-            border: 1px solid #444; /* Slightly lighter border for inputs */
-            width: calc(100% - 20px); /* Full width minus padding */
-            margin-bottom: 25px; /* Added margin-bottom for spacing */
-        }
+.modal h2 {
+    color: #e0e0e0; /* Light color for heading */
+    margin-bottom: 25px; /* Added bottom margin for spacing */
+}
 
-        .modal textarea {
-            height: 300px; /* Increased height for textarea */
-        }
+.modal input, .modal textarea {
+    background-color: #333; /* Dark background for inputs in modal */
+    color: #e0e0e0; /* Light text color for inputs in modal */
+    border: 1px solid #444; /* Slightly lighter border for inputs */
+    width: calc(100% - 20px); /* Full width minus padding */
+    margin-bottom: 25px; /* Added margin-bottom for spacing */
+}
 
-        .modal button {
-            background-color: #555; /* Dark button background */
-            color: #f4f4f4; /* Light text color */
-        }
+.modal textarea {
+    height: 300px; /* Increased height for textarea */
+}
 
-        .modal button:hover {
-            background-color: #666; /* Slightly lighter button background on hover */
-        }
+.modal-close {
+    color: #e0e0e0; /* Light color for close icon */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        .modal-close {
-            color: #e0e0e0; /* Light color for close icon */
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+.modal-close:hover,
+.modal-close:focus {
+    color: #f4f4f4; /* Lighter color on hover */
+}
 
-        .modal-close:hover,
-        .modal-close:focus {
-            color: #f4f4f4; /* Lighter color on hover */
-        }
+.modal h2 {
+    color: #e0e0e0; /* Light color for heading */
+}
 
-        .home-button {
-            display: block;
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #007BFF; /* Bright blue for home button */
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.modal input, .modal textarea {
+    background-color: #333; /* Dark background for inputs in modal */
+    color: #e0e0e0; /* Light text color for inputs in modal */
+    border: 1px solid #444; /* Slightly lighter border for inputs */
+}
 
-        .home-button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
+.modal button {
+    background-color: #555; /* Dark button background */
+    color: #f4f4f4; /* Light text color */
+}
 
-        /* Styling code blocks for YAML */
-        pre {
-            background-color: #333; /* Dark background for code blocks */
-            color: #e0e0e0; /* Light text color for code blocks */
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto; /* Enable horizontal scrolling if necessary */
-        }
+.modal button:hover {
+    background-color: #666; /* Slightly lighter button background on hover */
+}
 
-        code {
-            color: #e0e0e0; /* Light text color for inline code */
-        }
+.modal-close {
+    color: #e0e0e0; /* Light color for close icon */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        /* Syntax highlighting for Highlight.js */
-        .hljs {
-            background: #333; /* Dark background for syntax highlighting */
-            color: #e0e0e0; /* Light text color for syntax highlighting */
-        }
+.modal-close:hover,
+.modal-close:focus {
+    color: #f4f4f4; /* Lighter color on hover */
+}
 
-        /* Optional: Customize individual language syntax colors if needed */
-        .hljs-keyword {
-            color: #ff79c6; /* Example color for keywords */
-        }
-        .hljs-string {
-            color: #f1fa8c; /* Example color for strings */
-        }
-        .hljs-number {
-            color: #bd93f9; /* Example color for numbers */
-        }
+.home-button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #007BFF; /* Bright blue for home button */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.home-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+/* Стилизация блоков кода для YAML */
+pre {
+    background-color: #333; /* Dark background for code blocks */
+    color: #e0e0e0; /* Light text color for code blocks */
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto; /* Enable horizontal scrolling if necessary */
+}
+
+code {
+    color: #e0e0e0; /* Light text color for inline code */
+}
+
+/* Syntax highlighting for Highlight.js */
+.hljs {
+    background: #333; /* Dark background for syntax highlighting */
+    color: #e0e0e0; /* Light text color for syntax highlighting */
+}
+
+/* Optional: Customize individual language syntax colors if needed */
+.hljs-keyword {
+    color: #ff79c6; /* Example color for keywords */
+}
+.hljs-string {
+    color: #f1fa8c; /* Example color for strings */
+}
+.hljs-number {
+    color: #bd93f9; /* Example color for numbers */
+}
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="sidebar">
-            <a class="home-button" onclick="showSection('home')">Главная страница</a>
-            <div class="sidebar-content">
-                <h2>Категории</h2>
-                <div id="categoryLinks"></div>
-                <div id="noCategories" style="display: none;">Нет категорий</div> <!-- Added no categories message -->
-            </div>
-            <!-- Add category buttons are now at the bottom of the sidebar -->
-            <div class="input-area">
-                <input type="text" id="categoryName" placeholder="Введите название новой категории">
-                <textarea id="yamlContent" rows="5" placeholder="Введите содержимое"></textarea>
-                <button onclick="addNewCategory()">Добавить категорию</button>
-            </div>
-        </div>
+    <a class="home-button" onclick="showSection('home')">Главная страница</a>
+    <div class="sidebar-content">
+        <h2>Категории</h2>
+        <div id="categoryLinks"></div>
+        <div id="noCategories" style="display: none;">Нет категорий</div> <!-- Добавлено сообщение -->
+    </div>
+    <!-- Кнопки добавления категории теперь внизу боковой панели -->
+    <div class="input-area">
+        <input type="text" id="categoryName" placeholder="Введите название новой категории">
+        <textarea id="yamlContent" rows="5" placeholder="Введите содержимое"></textarea>
+        <button onclick="addNewCategory()">Добавить категорию</button>
+    </div>
+</div>
 
         <div class="content">
             <div id="home" class="section active">
@@ -253,131 +286,192 @@
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeEditModal()">&times;</span>
-            <h2>Редактирование категории</h2>
+            <h2>Редактирования категории</h2>
             <input type="text" id="editCategoryName" placeholder="Category Name">
             <textarea id="editYamlContent" rows="5" placeholder="YAML Content"></textarea>
             <button onclick="saveCategory()">Сохранить изменения</button>
         </div>
     </div>
 
-    <!-- Modal for viewing -->
-    <div id="viewModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeViewModal()">&times;</span>
-            <h2>Просмотр категории</h2>
-            <pre id="viewYamlContent"><code id="viewCode"></code></pre>
-        </div>
-    </div>
-
     <script>
-        // Initialize Highlight.js
-        hljs.highlightAll();
+        let currentEditId = '';
+	    // URL вашего YAML файла на GitHub
+    const yamlFileUrl = 'https://raw.githubusercontent.com/SnonSS/sCheckPlayer-Wiki/main/CmdArgConfess.yml';
 
-        const categories = [];
+    // Функция для загрузки и обработки YAML файла
+    async function loadYamlFile() {
+        try {
+            const response = await fetch(yamlFileUrl);
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            const yamlText = await response.text();
+            const data = jsyaml.load(yamlText);
+
+            // Обработка загруженных данных
+            displayCategories(data);
+        } catch (error) {
+            console.error('Error loading YAML file:', error);
+        }
+    }
+
+    // Функция для отображения категорий на сайте
+    function displayCategories(data) {
+        const sidebarLinks = document.getElementById('categoryLinks');
+
+        Object.keys(data).forEach(categoryName => {
+            const yamlContent = data[categoryName];
+            const sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
+            
+            addSection(sectionId, categoryName, yamlContent);
+
+            var newLink = document.createElement('a');
+            newLink.href = '#';
+            newLink.innerHTML = categoryName + 
+                ' <span class="edit-icon" onclick="editCategory(\'' + sectionId + '\')">&#9998;</span>' + 
+                ' <span class="delete-icon" onclick="deleteCategory(\'' + sectionId + '\')">&#10060;</span>';
+            newLink.setAttribute('onclick', 'showSection(\'' + sectionId + '\')');
+            sidebarLinks.appendChild(newLink);
+        });
+
+        updateNoCategoriesMessage();
+    }
+
+    // Загружаем YAML файл при загрузке страницы
+    window.onload = loadYamlFile;
+
+function updateNoCategoriesMessage() {
+    var noCategoriesMessage = document.getElementById('noCategories');
+    var categoryLinks = document.getElementById('categoryLinks').querySelectorAll('a').length;
+
+    if (categoryLinks === 0) {
+        noCategoriesMessage.style.display = 'block';
+    } else {
+        noCategoriesMessage.style.display = 'none';
+    }
+}
 
         function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => {
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function(section) {
                 section.classList.remove('active');
             });
+
             document.getElementById(sectionId).classList.add('active');
         }
 
+        function addSection(id, title, yamlContent) {
+            var contentDiv = document.querySelector('.content');
+            
+            var newSection = document.createElement('div');
+            newSection.id = id;
+            newSection.classList.add('section');
+            
+            var heading = document.createElement('h1');
+            heading.innerText = title;
+            newSection.appendChild(heading);
+
+            var preElement = document.createElement('pre');
+            preElement.innerHTML = '<code class="yaml">' + escapeHtml(yamlContent) + '</code>';
+            newSection.appendChild(preElement);
+
+            contentDiv.appendChild(newSection);
+
+            var sidebarLinks = document.getElementById('categoryLinks');
+            var newLink = document.createElement('a');
+            newLink.href = '#';
+            newLink.innerHTML = title + 
+                ' <span class="edit-icon" onclick="editCategory(\'' + id + '\')">&#9998;</span>' + 
+                ' <span class="delete-icon" onclick="deleteCategory(\'' + id + '\')">&#10060;</span>';
+            newLink.setAttribute('onclick', 'showSection(\'' + id + '\')');
+            sidebarLinks.appendChild(newLink);
+
+            // Apply syntax highlighting
+            hljs.highlightAll();
+			
+			// Update the "No Categories" message
+            updateNoCategoriesMessage();
+        }
+
         function addNewCategory() {
-            const name = document.getElementById('categoryName').value.trim();
-            const yaml = document.getElementById('yamlContent').value.trim();
+            var categoryName = document.getElementById('categoryName').value;
+            var yamlContent = document.getElementById('yamlContent').value;
 
-            if (name && yaml) {
-                categories.push({ name, yaml });
-                updateCategoryLinks();
-                clearInputs();
-            } else {
-                alert('Пожалуйста, заполните все поля.');
-            }
-        }
-
-        function updateCategoryLinks() {
-            const container = document.getElementById('categoryLinks');
-            container.innerHTML = '';
-
-            if (categories.length === 0) {
-                document.getElementById('noCategories').style.display = 'block';
+            if (categoryName.trim() === '' || yamlContent.trim() === '') {
+                alert('Пожалуйста, заполните название категории и содержимое.');
                 return;
-            } else {
-                document.getElementById('noCategories').style.display = 'none';
             }
 
-            categories.forEach((category, index) => {
-                const link = document.createElement('a');
-                link.textContent = category.name;
-                link.href = '#';
-                link.onclick = () => showCategory(category.yaml, index);
-                
-                const editIcon = document.createElement('span');
-                editIcon.textContent = '✎';
-                editIcon.className = 'edit-icon';
-                editIcon.onclick = (event) => {
-                    event.stopPropagation();
-                    editCategory(index);
-                };
-                
-                const deleteIcon = document.createElement('span');
-                deleteIcon.textContent = '🗑️';
-                deleteIcon.className = 'delete-icon';
-                deleteIcon.onclick = (event) => {
-                    event.stopPropagation();
-                    deleteCategory(index);
-                };
+            var sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
+            addSection(sectionId, categoryName, yamlContent);
 
-                link.appendChild(editIcon);
-                link.appendChild(deleteIcon);
-                container.appendChild(link);
-            });
-        }
-
-        function clearInputs() {
             document.getElementById('categoryName').value = '';
             document.getElementById('yamlContent').value = '';
         }
 
-        function showCategory(yaml, index) {
-            document.getElementById('viewCode').textContent = yaml;
-            document.getElementById('viewModal').style.display = 'block';
-            hljs.highlightElement(document.getElementById('viewCode'));
-        }
+        function editCategory(id) {
+            currentEditId = id;
 
-        function closeViewModal() {
-            document.getElementById('viewModal').style.display = 'none';
-        }
+            var section = document.getElementById(id);
+            var title = section.querySelector('h1').innerText;
+            var yamlContent = section.querySelector('pre').innerText;
 
-        function editCategory(index) {
-            const category = categories[index];
-            document.getElementById('editCategoryName').value = category.name;
-            document.getElementById('editYamlContent').value = category.yaml;
+            document.getElementById('editCategoryName').value = title;
+            document.getElementById('editYamlContent').value = yamlContent;
+
             document.getElementById('editModal').style.display = 'block';
-            document.getElementById('editModal').setAttribute('data-index', index);
+        }
+
+        function saveCategory() {
+            var newTitle = document.getElementById('editCategoryName').value;
+            var newYamlContent = document.getElementById('editYamlContent').value;
+
+            var section = document.getElementById(currentEditId);
+            section.querySelector('h1').innerText = newTitle;
+            section.querySelector('pre').innerHTML = '<code class="yaml">' + escapeHtml(newYamlContent) + '</code>';
+
+            var link = document.querySelector('.sidebar a[href="#"][onclick*="' + currentEditId + '"]');
+            link.innerHTML = newTitle + 
+                ' <span class="edit-icon" onclick="editCategory(\'' + currentEditId + '\')">&#9998;</span>' + 
+                ' <span class="delete-icon" onclick="deleteCategory(\'' + currentEditId + '\')">&#10060;</span>' ;
+
+            // Reapply syntax highlighting
+            hljs.highlightAll();
+
+            closeEditModal();
         }
 
         function closeEditModal() {
             document.getElementById('editModal').style.display = 'none';
         }
 
-        function saveCategory() {
-            const index = document.getElementById('editModal').getAttribute('data-index');
-            const name = document.getElementById('editCategoryName').value.trim();
-            const yaml = document.getElementById('editYamlContent').value.trim();
-
-            if (name && yaml) {
-                categories[index] = { name, yaml };
-                updateCategoryLinks();
-                closeEditModal();
-            } else {
-                alert('Пожалуйста, заполните все поля.');
+        function deleteCategory(id) {
+            var section = document.getElementById(id);
+            if (section) {
+                section.remove();
             }
-        }
 
-        function deleteCategory(index) {
-            categories.splice(index, 1);
-            updateCategoryLinks();
+            var link = document.querySelector('.sidebar a[href="#"][onclick*="' + id + '"]');
+            if (link) {
+                link.remove();
+            }
+
+            // Optionally, you might want to show the home section if it's the only remaining section
+            var sections = document.querySelectorAll('.section');
+            if (sections.length === 1 && sections[0].id === 'home') {
+                showSection('home');
+            }
+			// Update the "No Categories" message
+            updateNoCategoriesMessage();
+        }
+		// Call updateNoCategoriesMessage on page load to set the initial state
+        updateNoCategoriesMessage();
+
+        function escapeHtml(html) {
+            return html.replace(/&/g, '&amp;')
+                       .replace(/</g, '&lt;')
+                       .replace(/>/g, '&gt;')
+                       .replace(/"/g, '&quot;')
+                       .replace(/'/g, '&#039;');
         }
     </script>
 </body>
