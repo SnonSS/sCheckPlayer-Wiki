@@ -316,6 +316,20 @@ function updateNoCategoriesMessage() {
             document.getElementById(sectionId).classList.add('active');
         }
 
+// Функция для получения списка файлов в репозитории
+function getFileList(repoUrl) {
+    try {
+        const response = await fetch(repoUrl);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data; // Список файлов в формате JSON
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
+}
+
 // Функция для загрузки содержимого YAML файла с GitHub
 function loadCategoryFromGitHub(url, name) {
     try {
@@ -331,9 +345,29 @@ function loadCategoryFromGitHub(url, name) {
     }
 }
 
-// Пример использования функции для загрузки файла CmdArgConfess.yml
+// Функция для фильтрации файлов с расширением .yml
+function filterYmlFiles(files) {
+    return files.filter(file => file.name.endsWith('.yml'));
+}
+
+// Функция для загрузки всех файлов .yml
+function loadAllYmlFiles(repoApiUrl) {
+    try {
+        const files = await getFileList(repoApiUrl);
+        const ymlFiles = filterYmlFiles(files);
+        for (const file of ymlFiles) {
+            const fileUrl = file.download_url; // URL для загрузки файла
+            await loadCategoryFromGitHub(fileUrl, file.name.replace('.yml', ''));
+        }
+    } catch (error) {
+        console.error('There has been a problem with loading all YAML files:', error);
+    }
+}
+
+// Пример использования функции для загрузки всех .yml файлов
 document.addEventListener('DOMContentLoaded', () => {
-    loadCategoryFromGitHub('https://raw.githubusercontent.com/SnonSS/sCheckPlayer-Wiki/main/CmdArgConfess.yml', 'CmdArgConfess');
+    const repoApiUrl = 'https://api.github.com/repos/SnonSS/sCheckPlayer-Wiki/contents'; // URL для получения содержимого репозитория
+    loadAllYmlFiles(repoApiUrl);
 });
 	    
         function addSection(id, title, yamlContent) {
