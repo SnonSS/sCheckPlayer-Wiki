@@ -1,0 +1,1094 @@
+#
+#          ▄▄█▀▀▀▄█ ▀██                      ▀██      ▀██▀▀█▄  ▀██
+#  ▄▄▄▄  ▄█▀     ▀   ██ ▄▄     ▄▄▄▄    ▄▄▄▄   ██  ▄▄   ██   ██  ██   ▄▄▄▄    ▄▄▄▄ ▄▄▄   ▄▄▄▄  ▄▄▄ ▄▄
+# ██▄ ▀  ██          ██▀ ██  ▄█▄▄▄██ ▄█   ▀▀  ██ ▄▀    ██▄▄▄█▀  ██  ▀▀ ▄██    ▀█▄  █  ▄█▄▄▄██  ██▀ ▀▀
+# ▄ ▀█▄▄ ▀█▄      ▄  ██  ██  ██      ██       ██▀█▄    ██       ██  ▄█▀ ██     ▀█▄█   ██       ██
+# █▀▄▄█▀  ▀▀█▄▄▄▄▀  ▄██▄ ██▄  ▀█▄▄▄▀  ▀█▄▄▄▀ ▄██▄ ██▄ ▄██▄     ▄██▄ ▀█▄▄▀█▀     ▀█     ▀█▄▄▄▀ ▄██▄
+#                                                                            ▄▄ █
+#                                                                             ▀▀
+# Discord - snon_s
+#
+#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+#
+
+# Setting up the /scheck start command (initiate player inspection).
+# Настройка команды /scheck start (начать проверку игрока)
+Command-Arg-Start:
+  # You can disable the "start" command argument
+  # by setting the value to false, and to enable it - true.
+  # Вы можете отключить аргумент команды "start"
+  # Установив значения false, а чтобы включить - true
+  Command-Arg-Start-Enabled: true
+  # You can disable the "--offline" command argument
+  # by setting the value to false, and to enable it - true.
+  # Вы можете отключить аргумент команды "-offline"
+  # Установив значения false, а чтобы включить - true
+  Command-Arg-Start-Offline-Enabled: true
+  # You can disable the "scheck afk" command argument
+  # by setting the value to false, and to enable it - true.
+  # Вы можете отключить аргумент команды "scheck afk"
+  # Установив значения false, а чтобы включить - true
+  Command-Arg-Afk-Remove-Enabled: true
+  Time:
+    # Inspection duration (in seconds) (900 seconds = 15 minutes)
+    # Длительность проверки (в секундах) (900 секунд = 15 минут)
+    Check-Time: 900
+  Teleport:
+    # Allow teleporting the target player to the executor?
+    # Разрешить телепортацию целевого игрока к инициатору проверки?
+    Allow-Teleport-To-Executor: false
+    # Enables or disables teleportation of the player to the initiator at a distance.
+    # For this to work, you need to disable Allow-Teleport-To-Executor: false
+    # Включает или отключает телепортацию игрока к инициатору на расстоянии.
+    # Чтобы это работало нужно отключить Allow-Teleport-To-Executor: false
+    Allow-Teleport-To-Executor-At-Distance: true
+    # The distance in blocks the player will be teleported from the initiator.
+    # Расстояние в блоках, на которое будет телепортирован игрок от инициатора.
+    Distance: 3
+    # Enables or disables teleportation of players back to their original location,
+    # after disabling the plugin.
+    # Включает или отключает телепортацю игроков обратно на исходное местоположение,
+    # после отключения плагина.
+    Allow-Teleport-Back-Players-Disabled-Plugin: false
+    # Enables or disables safe teleportation of the player to the initiator at a distance.
+    # If the player is inside blocks, they will be teleported to the highest block.
+    # Включает или отключает безопасную телепортацию игрока к инициатору на расстоянии.
+    # Если игрок находится в блоках, он будет телепортирован на самый верхний блок.
+    # Works only when enabled: Allow-Teleport-To-Executor-At-Distance: true
+    # Работает только когда включено: Allow-Teleport-To-Executor-At-Distance: true
+    Safe-Teleport-Enabled: true
+  Teleport-Time-Out:
+    # Allow teleporting the target player back to their original location
+    # After the time is up.
+    # Разрешить телепортацию целевого игрока обратно на исходное местоположение
+    # После окончании времени.
+    Allow-Teleport-Back-Target-Player: false
+  Teleport-Target-Player-Custom-Location:
+    # Enables or disables player teleportation to other coordinates at the start of the check.
+    # (To make this work, Allow-Teleport-To-Executor: false must be disabled)
+    # Включает или отключает телепортацию игрока на другие координаты при начале проверки.
+    # (Чтобы это работало, нужно отключить Allow-Teleport-To-Executor: false)
+    Enabled: false
+    # The name of the world to which the player will be teleported.
+    # Название мира, куда будет телепортирован игрок.
+    World: "world"
+    # Teleport coordinates.
+    # Координаты телепортации.
+    X: 0
+    Y: 0
+    Z: 0
+    # The yaw (horizontal rotation) and pitch (vertical rotation) angles.
+    # Угол поворота по горизонтали (yaw) и вертикали (pitch).
+    Yaw: 0.0
+    Pitch: 0.0
+  ActionBar:
+    # Enables or disables the Action Bar for the player at the start of the check.
+    # Включает или отключает Экшен-Бар игроку при начале проверки.
+    ActionBar-Player: true
+    # Enables or disables the Action Bar for the initiator at the start of the check.
+    # Включает или отключает Экшен-Бар инициатору при начале проверки.
+    ActionBar-Initiator: true
+  Chat:
+    # Should the player's chat be enabled at the start of the inspection?
+    # Нужно ли включать чат игроку при начале проверки?
+    Chat-No-Repeat-Enabled: true
+    # Do I need to enable repeatable chat for the player when checking?
+    # Нужно ли включать повторяемый чат игроку когда идет проверка?
+    Chat-Repeat-Enabled: true
+    # Message sent to the player every 20 seconds, notifying them that they are being inspected.
+    # Каждые 20 секунд, будет писаться сообщение игроку о том, что он вызван на проверку.
+    Message-Delay: 20
+    #
+    # Does the initiator need to clear the chat when starting the check?
+    # Нужно ли очищать чат инициатору при начале проверки?
+    Clear-Chat-Initiator-Player-Enabled: false
+    # After how many milliseconds the message should be shown to the initiator,
+    # indicating that they have called a player for a check after the chat has been cleared.
+    # Works only when Clear-Chat-Initiator-Player-Enabled: true is enabled.
+    # Через сколько (миллисекунд) должно быть показано инициатору сообщения,
+    # что он вызвал игрока на проверку после очистки чата.
+    # Работает только когда включено Clear-Chat-Initiator-Player-Enabled: true
+    Message-Appears-Initiator: 3
+    # The number of blank lines sent to the chat for the initiator.
+    # Количество пустых строк, отправляемых в чат для инициатора.
+    Chat-Clear-Lines-Initiator: 150
+    #
+    # Does the player need to clear the chat when starting a check?
+    # Нужно ли очищать чат игроку при начале проверки?
+    Clear-Chat-Target-Player-Enabled: false
+    # After how many milliseconds the message should be shown to the player,
+    # indicating that they have been called for a check after the chat has been cleared.
+    # Works only when Clear-Chat-Target-Player-Enabled: true is enabled.
+    # Через сколько (миллисекунд) должно быть показано игроку сообщения,
+    # что его вызвали на проверку после очистки чата.
+    # Работает только когда включено Clear-Chat-Target-Player-Enabled: true
+    Message-Appears-Target: 3
+    # The number of blank lines sent to the player's chat.
+    # Количество пустых строк, отправляемых в чат для игрока.
+    Chat-Clear-Lines-Target: 150
+  BossBar:
+    # Should the boss bar be enabled for the player at the start of the inspection?
+    # Нужно ли включать босс-бар игроку при начале проверки?
+    Enabled: true
+    # Determines the color of the boss bar.
+    # The value can be one of the predefined colors, for example:
+    # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+    #
+    # Определяет цвет босс-бара.
+    # Значение может быть одним из предопределенных цветов, например:
+    # PINK (розовый), BLUE (синий), RED (красный), GREEN (зеленый),
+    # YELLOW (желтый), PURPLE (пурпурный), WHITE (белый)
+    Boss-Bar-Color: RED
+    # Determines the style of the boss bar.
+    # The value can be one of the predefined styles, for example:
+    # SOLID (solid) means that the boss's health progress will be displayed
+    # as a continuous bar or filled color.
+    # SEGMENTED_6 (segmented with 6 segments) means that
+    # the health progress will be divided into 6 equal segments,
+    # and each segment will be displayed separately.
+    # SEGMENTED_10 (segmented with 10 segments) works similarly,
+    # but with 10 segments instead of 6.
+    # SEGMENTED_12 (segmented with 12 segments) displays the boss's health progress with 12 segments.
+    # SEGMENTED_20 (segmented with 20 segments) uses 20 segments
+    # to display the boss's health progress.
+    #
+    # Определяет стиль босс-бара.
+    # Значение может быть одним из предопределенных стилей, например:
+    # SOLID (твердый) означает, что прогресс здоровья босса будет отображаться
+    # как непрерывная полоса или заполненный цвет.
+    # SEGMENTED_6 (сегментированный с 6 сегментами) означает,
+    # что прогресс здоровья будет разбит на 6 равных сегментов,
+    # и каждый сегмент будет отображаться отдельно.
+    # SEGMENTED_10 (сегментированный с 10 сегментами) работает аналогично,
+    # но с 10 сегментами вместо 6.
+    # SEGMENTED_12 (сегментированный с 12 сегментами) отображает прогресс здоровья босса с 12 сегментами.
+    # SEGMENTED_20 (сегментированный с 20 сегментами) использует 20 сегментов
+    # для отображения прогресса здоровья босса.
+    Boss-Bar-Style: SOLID
+  BossBar-Sender:
+    # Needless to say about the boss-bar for the first time?
+    # Нужно ли включать босс-бар для проверяющего при начале проверки?
+    Enabled: true
+    # Determines the color of the boss bar.
+    # The value can be one of the predefined colors, for example:
+    # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+    #
+    # Определяет цвет босс-бара.
+    # Значение может быть одним из предопределенных цветов, например:
+    # PINK (розовый), BLUE (синий), RED (красный), GREEN (зеленый),
+    # YELLOW (желтый), PURPLE (пурпурный), WHITE (белый)
+    Boss-Bar-Sender-Color: YELLOW
+    # Determines the style of the boss bar.
+    # The value can be one of the predefined styles, for example:
+    # SOLID (solid) means that the boss's health progress will be displayed
+    # as a continuous bar or filled color.
+    # SEGMENTED_6 (segmented with 6 segments) means that
+    # the health progress will be divided into 6 equal segments,
+    # and each segment will be displayed separately.
+    # SEGMENTED_10 (segmented with 10 segments) works similarly,
+    # but with 10 segments instead of 6.
+    # SEGMENTED_12 (segmented with 12 segments) displays the boss's health progress with 12 segments.
+    # SEGMENTED_20 (segmented with 20 segments) uses 20 segments
+    # to display the boss's health progress.
+    #
+    # Определяет стиль босс-бара.
+    # Значение может быть одним из предопределенных стилей, например:
+    # SOLID (твердый) означает, что прогресс здоровья босса будет отображаться
+    # как непрерывная полоса или заполненный цвет.
+    # SEGMENTED_6 (сегментированный с 6 сегментами) означает,
+    # что прогресс здоровья будет разбит на 6 равных сегментов,
+    # и каждый сегмент будет отображаться отдельно.
+    # SEGMENTED_10 (сегментированный с 10 сегментами) работает аналогично,
+    # но с 10 сегментами вместо 6.
+    # SEGMENTED_12 (сегментированный с 12 сегментами) отображает прогресс здоровья босса с 12 сегментами.
+    # SEGMENTED_20 (сегментированный с 20 сегментами) использует 20 сегментов
+    # для отображения прогресса здоровья босса.
+    Boss-Bar-Sender-Style: SOLID
+  Title-Start-Check-Target:
+    # Enables or disables on-screen messages?
+    # Включает или отключает сообщения на экран?
+    Enabled: true
+    # Time in ticks for the title to fade in (1 second = 20 ticks).
+    # Время появления заголовка в тиках (1 секунда = 20 тиков).
+    Fade-In-Time: 10
+    # Time in ticks (1 second = 20 ticks) during which the title stays on the screen.
+    # Время, в тиках (1 секунда = 20 тиков), в течение которого заголовок остается на экране.
+    Stay-Time: 70
+    # Time in ticks for the title to fade out (1 second = 20 ticks).
+    # Время исчезновения заголовка в тиках (1 секунда = 20 тиков).
+    Fade-Out-Time: 20
+  Title-Start-Check-Initiator:
+    # Enables or disables on-screen messages?
+    # Включает или отключает сообщения на экран?
+    Enabled: false
+    # Time in ticks for the title to fade in (1 second = 20 ticks).
+    # Время появления заголовка в тиках (1 секунда = 20 тиков).
+    Fade-In-Time: 10
+    # Time in ticks (1 second = 20 ticks) during which the title stays on the screen.
+    # Время, в тиках (1 секунда = 20 тиков), в течение которого заголовок остается на экране.
+    Stay-Time: 70
+    # Time in ticks for the title to fade out (1 second = 20 ticks).
+    # Время исчезновения заголовка в тиках (1 секунда = 20 тиков).
+    Fade-Out-Time: 20
+  Title-Timer-End-Target:
+    # Enables or disables on-screen messages?
+    # Включает или отключает сообщения на экран?
+    Enabled: false
+    # Time in ticks for the title to fade in (1 second = 20 ticks).
+    # Время появления заголовка в тиках (1 секунда = 20 тиков).
+    Fade-In-Time: 10
+    # Time in ticks (1 second = 20 ticks) during which the title stays on the screen.
+    # Время, в тиках (1 секунда = 20 тиков), в течение которого заголовок остается на экране.
+    Stay-Time: 70
+    # Time in ticks for the title to fade out (1 second = 20 ticks).
+    # Время исчезновения заголовка в тиках (1 секунда = 20 тиков).
+    Fade-Out-Time: 20
+  Title-Timer-End-Initiator:
+    # Enables or disables on-screen messages?
+    # Включает или отключает сообщения на экран?
+    Enabled: false
+    # Time in ticks for the title to fade in (1 second = 20 ticks).
+    # Время появления заголовка в тиках (1 секунда = 20 тиков).
+    Fade-In-Time: 10
+    # Time in ticks (1 second = 20 ticks) during which the title stays on the screen.
+    # Время, в тиках (1 секунда = 20 тиков), в течение которого заголовок остается на экране.
+    Stay-Time: 70
+    # Time in ticks for the title to fade out (1 second = 20 ticks).
+    # Время исчезновения заголовка в тиках (1 секунда = 20 тиков).
+    Fade-Out-Time: 20
+  Title-Move-Player:
+    # Enables or disables on-screen messages?
+    # Only works when Disable-Full-Movement: true is enabled in Listeners.yml file
+    # Включает или отключает сообщения на экран?
+    # Работает только когда включено Disable-Full-Movement: true в файле Listeners.yml
+    Enabled: true
+    # Time in ticks for the title to fade in (1 second = 20 ticks).
+    # Время появления заголовка в тиках (1 секунда = 20 тиков).
+    Fade-In-Time: 10
+    # Time in ticks (1 second = 20 ticks) during which the title stays on the screen.
+    # Время, в тиках (1 секунда = 20 тиков), в течение которого заголовок остается на экране.
+    Stay-Time: 70
+    # Time in ticks for the title to fade out (1 second = 20 ticks).
+    # Время исчезновения заголовка в тиках (1 секунда = 20 тиков).
+    Fade-Out-Time: 20
+  Sound-Start-Check-Target:
+    # Should the player hear a sound at the start of the inspection?
+    # Нужно ли, включать звук игроку при начале проверки?
+    Enabled: true
+    # You can set your own sound from the available list of sounds.
+    # The list of available sounds can be found at: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    # Здесь вы можете установить свой звук из списка доступных звуков.
+    # Список доступных звуков можно найти по ссылке: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    Sound: ENTITY_ENDER_DRAGON_GROWL
+    # The "Volume" parameter determines the sound volume.
+    # The value "1.0" indicates maximum sound volume,
+    # and values less than "1.0" indicate quieter sounds.
+    #
+    # Параметр "Volume" отвечает за громкость звука.
+    # Значение "1.0" означает максимальную громкость звука,
+    # а значения менее "1.0" означают более тихие звуки.
+    Volume: 1.0
+    # The "Pitch" parameter determines the sound pitch.
+    # The value "1.0" indicates normal pitch,
+    # values less than "1.0" indicate a lower pitch,
+    # and values greater than "1.0" indicate a higher pitch.
+    #
+    # Параметр "Pitch" отвечает за тон звука.
+    # Значение "1.0" означает нормальный тон звука,
+    # а значения менее "1.0" означают более низкий тон,
+    # а значения больше "1.0" - более высокий тон.
+    Pitch: 1.0
+  Sound-Start-Check-Initiator:
+    # Is it necessary for the initiator to turn on the sound when starting the scan?
+    # Нужно ли, включать звук инициатору при начале проверки?
+    Enabled: false
+    # You can set your own sound from the available list of sounds.
+    # The list of available sounds can be found at: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    # Здесь вы можете установить свой звук из списка доступных звуков.
+    # Список доступных звуков можно найти по ссылке: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    Sound: ENTITY_ENDER_DRAGON_GROWL
+    # The "Volume" parameter determines the sound volume.
+    # The value "1.0" indicates maximum sound volume,
+    # and values less than "1.0" indicate quieter sounds.
+    #
+    # Параметр "Volume" отвечает за громкость звука.
+    # Значение "1.0" означает максимальную громкость звука,
+    # а значения менее "1.0" означают более тихие звуки.
+    Volume: 1.0
+    # The "Pitch" parameter determines the sound pitch.
+    # The value "1.0" indicates normal pitch,
+    # values less than "1.0" indicate a lower pitch,
+    # and values greater than "1.0" indicate a higher pitch.
+    #
+    # Параметр "Pitch" отвечает за тон звука.
+    # Значение "1.0" означает нормальный тон звука,
+    # а значения менее "1.0" означают более низкий тон,
+    # а значения больше "1.0" - более высокий тон.
+    Pitch: 1.0
+  Sound-Start-Time-Check-Target:
+    # Should the player hear a sound when the inspection timer starts?
+    # Нужно ли, включать звук игроку при начале проверки когда идет таймер?
+    Enabled: true
+    # You can set your own sound from the available list of sounds.
+    # The list of available sounds can be found at: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    # Здесь вы можете установить свой звук из списка доступных звуков.
+    # Список доступных звуков можно найти по ссылке: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    Sound: BLOCK_NOTE_BLOCK_XYLOPHONE
+    # The "Volume" parameter determines the sound volume.
+    # The value "1.0" indicates maximum sound volume,
+    # and values less than "1.0" indicate quieter sounds.
+    #
+    # Параметр "Volume" отвечает за громкость звука.
+    # Значение "1.0" означает максимальную громкость звука,
+    # а значения менее "1.0" означают более тихие звуки.
+    Volume: 1.0
+    # The "Pitch" parameter determines the sound pitch.
+    # The value "1.0" indicates normal pitch,
+    # values less than "1.0" indicate a lower pitch,
+    # and values greater than "1.0" indicate a higher pitch.
+    #
+    # Параметр "Pitch" отвечает за тон звука.
+    # Значение "1.0" означает нормальный тон звука,
+    # а значения менее "1.0" означают более низкий тон,
+    # а значения больше "1.0" - более высокий тон.
+    Pitch: 1.0
+  Sound-Start-Time-Check-Initiator:
+    # Is it necessary for the initiator to turn on the sound when starting the check when the timer is running?
+    # Нужно ли, включать звук инициатору при начале проверки когда идет таймер?
+    Enabled: true
+    # You can set your own sound from the available list of sounds.
+    # The list of available sounds can be found at: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    # Здесь вы можете установить свой звук из списка доступных звуков.
+    # Список доступных звуков можно найти по ссылке: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    Sound: BLOCK_NOTE_BLOCK_BIT
+    # The "Volume" parameter determines the sound volume.
+    # The value "1.0" indicates maximum sound volume,
+    # and values less than "1.0" indicate quieter sounds.
+    #
+    # Параметр "Volume" отвечает за громкость звука.
+    # Значение "1.0" означает максимальную громкость звука,
+    # а значения менее "1.0" означают более тихие звуки.
+    Volume: 1.0
+    # The "Pitch" parameter determines the sound pitch.
+    # The value "1.0" indicates normal pitch,
+    # values less than "1.0" indicate a lower pitch,
+    # and values greater than "1.0" indicate a higher pitch.
+    #
+    # Параметр "Pitch" отвечает за тон звука.
+    # Значение "1.0" означает нормальный тон звука,
+    # а значения менее "1.0" означают более низкий тон,
+    # а значения больше "1.0" - более высокий тон.
+    Pitch: 1.0
+  Sound-Start-Time-Expired-Check-Target:
+    # Do I need to turn on the player's sound when the timer ends?
+    # Нужно ли, включать звук игроку при окончании таймера?
+    Enabled: true
+    # You can set your own sound from the available list of sounds.
+    # The list of available sounds can be found at: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    # Здесь вы можете установить свой звук из списка доступных звуков.
+    # Список доступных звуков можно найти по ссылке: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    Sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    # The "Volume" parameter determines the sound volume.
+    # The value "1.0" indicates maximum sound volume,
+    # and values less than "1.0" indicate quieter sounds.
+    #
+    # Параметр "Volume" отвечает за громкость звука.
+    # Значение "1.0" означает максимальную громкость звука,
+    # а значения менее "1.0" означают более тихие звуки.
+    Volume: 1.0
+    # The "Pitch" parameter determines the sound pitch.
+    # The value "1.0" indicates normal pitch,
+    # values less than "1.0" indicate a lower pitch,
+    # and values greater than "1.0" indicate a higher pitch.
+    #
+    # Параметр "Pitch" отвечает за тон звука.
+    # Значение "1.0" означает нормальный тон звука,
+    # а значения менее "1.0" означают более низкий тон,
+    # а значения больше "1.0" - более высокий тон.
+    Pitch: 1.0
+  Sound-Start-Time-Expired-Check-Initiator:
+    # Is it necessary for the initiator to turn on the sound when the timer ends?
+    # Нужно ли, включать звук инициатору при окончании таймера?
+    Enabled: true
+    # You can set your own sound from the available list of sounds.
+    # The list of available sounds can be found at: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    # Здесь вы можете установить свой звук из списка доступных звуков.
+    # Список доступных звуков можно найти по ссылке: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    Sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    # The "Volume" parameter determines the sound volume.
+    # The value "1.0" indicates maximum sound volume,
+    # and values less than "1.0" indicate quieter sounds.
+    #
+    # Параметр "Volume" отвечает за громкость звука.
+    # Значение "1.0" означает максимальную громкость звука,
+    # а значения менее "1.0" означают более тихие звуки.
+    Volume: 1.0
+    # The "Pitch" parameter determines the sound pitch.
+    # The value "1.0" indicates normal pitch,
+    # values less than "1.0" indicate a lower pitch,
+    # and values greater than "1.0" indicate a higher pitch.
+    #
+    # Параметр "Pitch" отвечает за тон звука.
+    # Значение "1.0" означает нормальный тон звука,
+    # а значения менее "1.0" означают более низкий тон,
+    # а значения больше "1.0" - более высокий тон.
+    Pitch: 1.0
+  Allowed-Commands:
+    # Should the list of allowed commands be enabled?
+    # Нужно ли, включать список разрешенных команд?
+    # If you do not want to block all commands, go to the Listeners.yml file and set Player-Command-Preprocess-Enabled: false
+    # Если вы не хотите блокировать все команды зайдите в файл Listeners.yml и поставьте Player-Command-Preprocess-Enabled: false
+    Enabled: true
+    # Specify the list of commands that are allowed during inspection.
+    # Укажите здесь список команд которые будут разрешены во время проверки.
+    Commands:
+    - /scheck confess
+    # Enables or disables display of commands to the initiator that the player writes during verification.
+    # Включает или отключает показ команд инициатору которые пишет игрок на проверке.
+    Shows-Commands-Initiator: false
+    # List of commands that will not be visible to the initiator that the player writes.
+    # Список команд которые не будут видны инициатору который пишет игрок.
+    # Specify "1: /(command) to not show the command if it is written with arguments /login 123"
+    # Specify "0: /(command) to not show the main command, but it will show the arguments of the command /login 123"
+    # Укажите "1: /(команда) чтобы не показывать команду если она написана с аргументами /login 123"
+    # Укажите "0: /(команда) чтобы не показывать основную команду, но она будет показывать аргументы команды /login 123"
+    Blocked-Shows-Commands-Initiator:
+    - '1: /l'
+    - '1: /login'
+    - '1: /reg'
+    - '1: /register'
+    - '0: /spawn'
+  Allowed-Commands-Initiator:
+    # Should the list of allowed commands be enabled?
+    # Включает или отключает список разрешенных команд для инициатора.
+    # Если включено блокируються все команды для инициатора кроме тех что в списке.
+    # Если отключено команды не будут блокироваться для инициатора.
+    Enabled: false
+    # Specify the list of commands here.
+    # Grant the scheckplayer.bypassblockingcommandsinitiator right to the initiator if you want
+    # the initiator to be able to write commands without being blocked.
+    # Укажите здесь список команд.
+    # Выдайте право scheckplayer.bypassblockingcommandsinitiator инициатору если хотите
+    # чтобы инициатор мог писать команды без блокировки.
+    Commands:
+    - /scheck confirm
+    - /scheck stop
+    - /scheck list
+    - /scheck timer add
+    - /scheck timer continue
+    - /scheck timer stop
+    - /scheck timer set
+  Commands-End-Time:
+    # Should commands be executed when the inspection timer ends?
+    # Нужно ли включать выполнения команд при окончании времени проверки?
+    Enabled: true
+    # Commands to execute if the timer expires during inspection.
+    # Команды, если время закончится во время проверки.
+    # %initiator-player% replaced by the initiator's nickname. | заменяется на ник инициатора.
+    # %target-player% is replaced by the player's nickname. | заменяется на ник игрока.
+    #
+    # Available values:
+    # Command from the console without delay:
+    # - '(command)'
+    # Command from the console with a 5-second delay:
+    # - 'delay: 5 (command)'
+    # Command from the player being checked without delay:
+    # - 'player: (command)'
+    # Command from the player being checked with a 10-second delay:
+    # - 'delay: 10 player: (command)'
+    # Command from the player who initiated the check without delay:
+    # - 'player-initiator: (command)'
+    # Command from the player who initiated the check with a 15-second delay:
+    # - 'delay: 15 player-initiator: (command)'
+    #
+    # Доступные значения:
+    # Команда от консоли без задержки:
+    # - '(команда)'
+    # Команда от консоли с задержкой 5 секунд:
+    # - 'delay: 5 (команда)'
+    # Команда от имени игрока который на проверке без задержки:
+    # - 'player: (команда)'
+    # Команда от имени игрока который на проверке с задержкой 10 секунд:
+    # - 'delay: 10 player: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, без задержки:
+    # - 'player-initiator: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, с задержкой 15 секунд:
+    # - 'delay: 15 player-initiator: (команда)'
+    #
+    Commands:
+    - 'tempban %target-player% 30d Timer expired'
+  Commands-Leave-Player:
+    # Should commands be executed when a player leaves the server during inspection?
+    # Нужно ли включать выполнения команд когда игрок вышел из сервера?
+    Enabled: true
+    # Commands to execute if a player leaves the server during inspection.
+    # Команды, при выходе игрока с сервера, во время проверки.
+    # %initiator-player% replaced by the initiator's nickname. | заменяется на ник инициатора.
+    # %target-player% is replaced by the player's nickname. | заменяется на ник игрока.
+    #
+    # Available values:
+    # Command from the console without delay:
+    # - '(command)'
+    # Command from the console with a 5-second delay:
+    # - 'delay: 5 (command)'
+    # Command from the player being checked without delay:
+    # - 'player: (command)'
+    # Command from the player being checked with a 10-second delay:
+    # - 'delay: 10 player: (command)'
+    # Command from the player who initiated the check without delay:
+    # - 'player-initiator: (command)'
+    # Command from the player who initiated the check with a 15-second delay:
+    # - 'delay: 15 player-initiator: (command)'
+    #
+    # Доступные значения:
+    # Команда от консоли без задержки:
+    # - '(команда)'
+    # Команда от консоли с задержкой 5 секунд:
+    # - 'delay: 5 (команда)'
+    # Команда от имени игрока который на проверке без задержки:
+    # - 'player: (команда)'
+    # Команда от имени игрока который на проверке с задержкой 10 секунд:
+    # - 'delay: 10 player: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, без задержки:
+    # - 'player-initiator: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, с задержкой 15 секунд:
+    # - 'delay: 15 player-initiator: (команда)'
+    #
+    Commands:
+    - 'tempban %target-player% 30d Exit check'
+  Commands-Leave-Sender:
+    # Do I need to enable command execution when the reviewer has left the server?
+    # Нужно ли включать выполнения команд когда проверяющий вышел из сервера?
+    Enabled: false
+    # Commands when the reviewer exits the server (but the commands are executed on the player and not on the reviewer) during verification.
+    # Команды, при выходе проверяющего с сервера, (но команды выполняются на игроке а не на проверяющему) во время проверки.
+    # %initiator-player% replaced by the initiator's nickname. | заменяется на ник инициатора.
+    # %target-player% is replaced by the player's nickname. | заменяется на ник игрока.
+    #
+    # Available values:
+    # Command from the console without delay:
+    # - '(command)'
+    # Command from the console with a 5-second delay:
+    # - 'delay: 5 (command)'
+    # Command from the player being checked without delay:
+    # - 'player: (command)'
+    # Command from the player being checked with a 10-second delay:
+    # - 'delay: 10 player: (command)'
+    # Command from the player who initiated the check without delay:
+    # - 'player-initiator: (command)'
+    # Command from the player who initiated the check with a 15-second delay:
+    # - 'delay: 15 player-initiator: (command)'
+    #
+    # Доступные значения:
+    # Команда от консоли без задержки:
+    # - '(команда)'
+    # Команда от консоли с задержкой 5 секунд:
+    # - 'delay: 5 (команда)'
+    # Команда от имени игрока который на проверке без задержки:
+    # - 'player: (команда)'
+    # Команда от имени игрока который на проверке с задержкой 10 секунд:
+    # - 'delay: 10 player: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, без задержки:
+    # - 'player-initiator: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, с задержкой 15 секунд:
+    # - 'delay: 15 player-initiator: (команда)'
+    #
+    Commands:
+    - ''
+  Commands-Start-Check:
+    # Should commands be executed at the start of the inspection?
+    # Нужно ли включать выполнения команд при начале проверки игрока?
+    Enabled: false
+    # Commands to execute at the start of the inspection.
+    # Команды, при начале проверки.
+    # %initiator-player% replaced by the initiator's nickname. | заменяется на ник инициатора.
+    # %target-player% is replaced by the player's nickname. | заменяется на ник игрока.
+    #
+    # Available values:
+    # Command from the console without delay:
+    # - '(command)'
+    # Command from the console with a 5-second delay:
+    # - 'delay: 5 (command)'
+    # Command from the player being checked without delay:
+    # - 'player: (command)'
+    # Command from the player being checked with a 10-second delay:
+    # - 'delay: 10 player: (command)'
+    # Command from the player who initiated the check without delay:
+    # - 'player-initiator: (command)'
+    # Command from the player who initiated the check with a 15-second delay:
+    # - 'delay: 15 player-initiator: (command)'
+    #
+    # Доступные значения:
+    # Команда от консоли без задержки:
+    # - '(команда)'
+    # Команда от консоли с задержкой 5 секунд:
+    # - 'delay: 5 (команда)'
+    # Команда от имени игрока который на проверке без задержки:
+    # - 'player: (команда)'
+    # Команда от имени игрока который на проверке с задержкой 10 секунд:
+    # - 'delay: 10 player: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, без задержки:
+    # - 'player-initiator: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, с задержкой 15 секунд:
+    # - 'delay: 15 player-initiator: (команда)'
+    #
+    Commands:
+    - ''
+  Commands-Plugin-Disabled:
+    # Should I enable command execution when disabling the plugin?
+    # Нужно ли включать выполнения команд при отключения плагина?
+    Enabled: false
+    # %initiator-player% replaced by the initiator's nickname. | заменяется на ник инициатора.
+    # %target-player% is replaced by the player's nickname. | заменяется на ник игрока.
+    #
+    # Available values:
+    # Command from the console:
+    # - '(command)'
+    #
+    # Доступные значения:
+    # Команда от консоли:
+    # - '(команда)'
+    #
+    Commands:
+    - ''
+  Click-Messages-Target-Start-Check:
+    # Should clickable messages be enabled when a player is summoned for inspection?
+    # Нужно ли включать кликабельное сообщения, когда у игрока появляется проверка?
+    Enabled: true
+    # Should hover text be enabled?
+    # Нужно ли включать ховер текст?
+    Enabled-Hover-Text: true
+    # Command executed when clicking on the messages.
+    # Команда, выполняемая при клике на сообщения.
+    Click-Command: '/scheck confess'
+  Click-Messages-Command-Run-Remove-Afk:
+    # Command executed when clicking on messages to remove a player from AFK checking.
+    # Команда, выполняемая при клике на сообщения чтобы удалить игрока из афк проверки.
+    Click-Command: '/scheck afk %target-player% --remove'
+  Log-File:
+    # Enables or disables logging.
+    # Включает или отключает логи.
+    Enabled: true
+    # Time format for logs
+    # Формат времени для логов
+    Time: 'HH:mm:ss | dd.MM.yyyy'
+    # When set to false, the default path \plugins\sCheckPlayer\Logs\ will be used
+    # When set to true, you need to specify your own path where the CmdArgStartLogs.yml file will be saved
+    # This path should be without specifying the CmdArgStartLogs.yml file name and should look something like this: \plugins\sCheckPlayer\CustomPath\
+    #
+    # Когда значение равно false, будет использован стандартный путь \plugins\sCheckPlayer\Logs\
+    # Когда значение равно true, вам необходимо указать собственный путь, куда будет сохранен файл CmdArgStartLogs.yml
+    # Этот путь должен быть без указания имени файла CmdArgStartLogs.yml и должен выглядеть примерно так: \plugins\sCheckPlayer\CustomPath\.
+    Path-Full-Enabled: false
+    # Specify your path where the CmdArgStartLogs.yml file will be saved
+    # Укажите свой путь куда будет сохранен файл CmdArgStartLogs.yml
+    Path-Full: '\plugins\sCheckPlayer\CustomPath\'
+  Log-Discord:
+    # Enables or disables logging to Discord.
+    # Включает или отключает отправку логов в Discord.
+    Enabled: false
+    # Time format for logs
+    # Формат времени для логов
+    Time: 'HH:mm:ss | dd.MM.yyyy'
+    # The Discord webhook URL for sending logs.
+    # URL вебхука Discord для отправки логов.
+    Web-Hook: https://discord.com/api/webhooks/0000000000000000/0000000000000000000000000000000000000000000000000000000000000000000-0
+  Notify-Message-Admin:
+    # Enables or disables messages to online admins.
+    # Включает или отключает сообщения онлайн админам.
+    Enabled: false
+    # Enables or disables console messages.
+    # Включает или отключает сообщения в консоль.
+    Notify-Message-Console: true
+  WhiteList-Players:
+    # Should I include a whitelist of players who cannot be called for review?
+    # Нужно ли включать белый список игроков, которых нельзя вызвать на проверку?
+    Enabled: false
+    # Specify a list of players.
+    # Укажите список игроков.
+    Players:
+    - Snon_SS
+  Quit-Server:
+    # Enables or disables killing a player when the player leaves the check.
+    # Включает или отключает убийство игрока когда игрок покинул проверку.
+    Kill-Player-Quit: false
+    # Allow teleporting the target player back to their original location
+    # After the reviewer exits the server.
+    # Разрешить телепортацию целевого игрока обратно на исходное местоположение
+    # После выходе проверяющего из сервера.
+    Allow-Teleport-Back-Target-Player: true
+  Freezing-Player:
+    # Enables or disables freezing the player at the start of the check.
+    # (Works from 1.17 and higher!)
+    # Включает или отключает заморозку игрока при начале проверки.
+    # (Работает от 1.17 и выше!)
+    Enabled: false
+  Check-Proximity:
+    # Enable/disable proximity check to prevent other players from
+    # approaching a player on check.
+    # !!! Check does not work if Player-Move-Enabled in Listeners.yml = false. !!!
+    # Включение/выключение проверки близости, чтобы другие игроки не смогли
+    # подойти к игроку на проверке.
+    # !!! Проверка не работает, если Player-Move-Enabled в Listeners.yml = false. !!!
+    Enabled: false
+    # Радиус проверки близости (в блоках).
+    # Игроки в пределах этого радиуса будут проверяться.
+    Proximity-Radius: 10
+    # Vertical movement speed (Y axis).
+    # Скорость вертикального перемещения (ось Y).
+    Velocity-Y: 0.3
+    # Speed multiplication factor.
+    # Коэффициент умножения скорости перемещения.
+    Velocity-Multiply: 0.3
+    # Task execution interval (in milliseconds).
+    # Интервал выполнения задачи (в миллисекундах).
+    Task-Interval: 1
+    # Message sending interval (in seconds).
+    # Интервал отправки сообщений (в секундах).
+    Message-Interval: 5
+    # Enable/disable message sending.
+    # Включение/выключение отправки сообщения.
+    Proximity-Message: true
+    # A list of allowed players who can approach the player during the check.
+    # Players listed here will not be affected by the Proximity Check.
+    # The username must be specified exactly, including the correct letter case.
+    # If a player is not listed here and the Proximity Check is enabled, they will not be able to approach.
+    # Список разрешенных игроков, которым можно приблизиться к игроку во время проверки.
+    # Игроки, указанные в этом списке, не будут затронуты проверкой близости (Proximity Check).
+    # Имя пользователя должно быть указано точно, включая правильный регистр букв.
+    # Если игрок не указан в этом списке, и Proximity Check включен, он не сможет приблизиться.
+    Allowed-Players:
+    - 'Snon_SS'
+    # %initiator-player% replaced by the initiator's nickname. | заменяется на ник инициатора.
+    # %target-player% is replaced by the nickname of the player who is being checked. | заменяется на ник игрока который на проверке.
+    # %player% is replaced by the nickname of the player who is trying to enter the radius. | заменяется на ник игрока который пытается войти в радиус.
+    #
+    # Available values:
+    # Command from the console without delay:
+    # - '(command)'
+    # Command from the console with a 5-second delay:
+    # - 'delay: 5 (command)'
+    # Command executed by the player being checked without delay:
+    # - 'player-target: (command)'
+    # Command executed by the player being checked with a 10-second delay:
+    # - 'delay: 10 player-target: (command)'
+    # Command executed by the player attempting to enter the radius without delay:
+    # - 'player: (command)'
+    # Command executed by the player attempting to enter the radius with a 10-second delay:
+    # - 'delay: 10 player: (command)'
+    # Command executed by the player who initiated the check without delay:
+    # - 'player-initiator: (command)'
+    # Command executed by the player who initiated the check with a 15-second delay:
+    # - 'delay: 15 player-initiator: (command)'
+    #
+    # Доступные значения:
+    # Команда от консоли без задержки:
+    # - '(команда)'
+    # Команда от консоли с задержкой 5 секунд:
+    # - 'delay: 5 (команда)'
+    # Команда от имени игрока который на проверке без задержки:
+    # - 'player-target: (команда)'
+    # Команда от имени игрока который на проверке с задержкой 10 секунд:
+    # - 'delay: 10 player-target: (команда)'
+    # Команда от имени игрока который который пытается войти в радиус без задержки:
+    # - 'player: (команда)'
+    # Команда от имени игрока который который пытается войти в радиус с задержкой 10 секунд:
+    # - 'delay: 10 player: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, без задержки:
+    # - 'player-initiator: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, с задержкой 15 секунд:
+    # - 'delay: 15 player-initiator: (команда)'
+    #
+    Commands:
+    - ''
+  Player-Never-Joined:
+    # Determines whether to check if the player has ever been on the server.
+    # When using the command /scheck start [nick] --offline:
+    # - If true, it will check if the player has been registered on the server.
+    # - If false, the check is ignored, and the command executes regardless of this.
+    #
+    # Определяет, должна ли проверяться информация о том, был ли игрок когда-либо на сервере.
+    # При использовании команды /scheck start [ник] --offline:
+    # - Если true, будет проверяться, был ли игрок зарегистрирован на сервере.
+    # - Если false, проверка игнорируется и команда выполняется независимо от этого.
+    Enabled: true
+  Afk-System:
+    # Enables or disables the AFK system.
+    # When enabled (true), the system will monitor player activity and mark them as AFK
+    # if they have not performed any actions for a certain period of time.
+    # The initiator of the check will be notified that the player is AFK,
+    # and the check will be automatically triggered when the player returns from AFK.
+    #
+    # Включает или отключает систему AFK.
+    # Если включено (true), система будет отслеживать активность игроков и помечать их как AFK,
+    # если они не выполняли действий в течение определенного времени.
+    # Инициатор проверки будет уведомлен, что игрок находится в режиме AFK,
+    # и вызов на проверку будет выполнен автоматически, когда игрок вернется из AFK.
+    Enabled: false
+    # The time in seconds after which a player will be considered AFK if they haven't shown any activity (e.g., haven't moved).
+    # If a player does not perform any actions within this time, they will automatically be marked as AFK.
+    # 300 seconds = 5 minutes
+    # 600 seconds = 10 minutes
+    # 900 seconds = 15 minutes
+    #
+    # Время в секундах, через которое игрок будет считаться AFK, если он не проявлял активности (например, не двигался).
+    # Если игрок не выполняет никаких действий в течение этого времени, он автоматически будет помечен как AFK.
+    # 300 секунд = 5 минут
+    # 600 секунд = 10 минут
+    # 900 секунд = 15 минут
+    Time-Out-Afk: 300
+    # The interval in seconds at which the system will check the status of each player for activity.
+    # This determines how frequently the task runs to check if a player has gone AFK.
+    # Lower values make the check more frequent but may increase server load.
+    #
+    # Интервал в секундах, через который система будет проверять состояние каждого игрока на активности.
+    # Это влияет на частоту выполнения задачи, которая определяет, ушел ли игрок в режим AFK.
+    # Меньшие значения делают проверку более частой, но могут увеличить нагрузку на сервер.
+    Task-Interval: 1
+    # When enabled, the system checks for mouse movement.
+    # When disabled, it checks for movement from block to block.
+    # Enabling this check may increase server load.
+    # (If it does not cause lag, you can leave it enabled).
+    #
+    # Когда включено игрока проверяет на движение мыши.
+    # Когда отключено игрока проверяет на перемещение с блока на блок.
+    # Включения проверки может увеличить нагрузку на сервер.
+    # (если функция не вызывает лагов, то можно оставить включенной).
+    Check-Movements-Completely: false
+    # The value indicates how sensitive the system is to changes in the player's view direction.
+    # A lower value makes the sensitivity higher.
+    # A higher value makes the sensitivity lower.
+    # You need to restart the plugin for this to take effect.
+    #
+    # Значение указывает, насколько чувствительно система реагирует на изменение направления взгляда игрока.
+    # Меньшее значение делает проверку более чувствительной.
+    # Большее значение делает проверку менее чувствительной.
+    # Нужно перезагрузить плагин чтобы это применилось.
+    Mouse-Movement-Sensitivity: 1
+    # "int" for using integers.
+    # "double" to use numbers with a dot.
+    # Intended for Mouse-Movement-Sensitivity
+    #
+    # "int" для использования целых чисел.
+    # "double" для использования чисел с точкой.
+    # Предназначено для Mouse-Movement-Sensitivity
+    Type-Variables: int
+  Add-Tab-Completion-Afk-Remove:
+    # Enables or disables the display of the command in tab completion
+    # for removing AFK status. /scheck afk (nickname) --remove.
+    # Включает или отключает показ команды в автозаполнении
+    # табуляции для удаления режима AFK. /scheck afk (ник) --remove.
+    Enabled: false
+  Completion-Player-Names:
+    # Specifies the maximum number of player names that will appear in the tab completion list
+    # when using commands like /scheck start (name) or /scheck afk (name) --remove.
+    # This limit helps prevent the list from being overloaded with too many suggestions.
+    #
+    # Указывает максимальное количество имен игроков, которые будут отображаться в списке автозавершения,
+    # когда используются команды /scheck start (ник) или /scheck afk (ник) --remove.
+    # Это ограничение помогает избежать перегрузки списка большим количеством предложений.
+    Max-Player-Suggestions: 10
+    # Enables or disables the use of a cooldown between tab completion requests by the same player.
+    # When enabled (true), the system applies the delay specified in Tab-Completion-Cooldown
+    # to prevent excessively frequent use of tab completion.
+    # When disabled (false), no delay will be applied, and tab completion can be used without restrictions.
+    # It is not recommended to set this to false, as it may lead to excessive server load
+    # due to frequent tab completion requests.
+    #
+    # Включает или отключает использование задержки между вызовами автозавершения таба для одного и того же игрока.
+    # Когда включено (true), система применяет задержку, указанную в Tab-Completion-Cooldown,
+    # чтобы избежать слишком частого использования автозавершения.
+    # Когда отключено (false), задержка не будет применяться, и автозавершение можно использовать без ограничений.
+    # Не рекомендуется устанавливать значение false, так как это может привести к чрезмерной нагрузке на сервер
+    # из-за частых запросов на автозавершение.
+    Tab-Completion-Cooldown-Enabled: true
+    # Specifies the cooldown in milliseconds between tab completion requests by the same player.
+    # This setting helps prevent excessive use of resource-intensive operations, such as player list queries,
+    # and reduces server load, especially with frequent use of tab completion commands.
+    #
+    # Указывает задержку в миллисекундах между вызовами автозавершения таба для одного и того же игрока.
+    # Этот параметр помогает предотвратить чрезмерное использование ресурсоемких операций, таких как запросы к списку игроков,
+    # и уменьшает нагрузку на сервер, особенно при частом использовании команд автозавершения.
+    Tab-Completion-Cooldown: 300
+  Trigger-Chat-Messages:
+    # Enables or disables the checking of words that a player writes during inspection.
+    # If enabled, the system will check the messages of players under inspection
+    # and consider if they use specific words or phrases. If a player's message
+    # matches the check criteria, certain actions, such as banning, may be taken.
+    #
+    # Включает или отключает проверку слов, которые игрок написал во время проверки.
+    # Если включено, система будет проверять сообщения игроков, находящихся под проверкой,
+    # и будет учитывать, если они используют определенные слова или фразы. Если игрок пишет что-то,
+    # что соответствует критериям проверки, это может привести к применению определенных мер, например, бану.
+    Enabled: false
+    # Enables or disables killing a player when the player leaves the check.
+    # Включает или отключает убийство игрока когда игрок покинул проверку.
+    Kill-Player-Quit: false
+    # Determines whether the trigger word check should be case-sensitive.
+    # If set to false, the trigger word will be recognized regardless of whether
+    # it is written in uppercase, lowercase, or a combination of both.
+    # If set to true, the check will be case-sensitive, and the trigger word must be written exactly as specified in Trigger-Words.
+    # Example: If the trigger word is 'I cheat', and the Exact-Match parameter is set to true, the check will only trigger if the player types 'I cheat'.
+    # If the player types 'I CHEAT', 'i cheat', or any other variation, the check will not trigger.
+    #
+    # Определяет, должна ли проверка триггерных слов учитывать регистр букв.
+    # Если установлено false, триггерное слово будет распознаваться, независимо от того,
+    # написано оно заглавными, строчными буквами или их комбинацией.
+    # Если установлено true, проверка будет учитывать регистр букв, и триггерное слово должно быть написано точно так, как указано в Trigger-Words.
+    # Пример: Если триггерное слово — 'Я чит', и параметр Exact-Match установлен true, то проверка сработает только, если игрок напишет 'Я чит'.
+    # Если он напишет 'Я ЧИТ', 'я чит' или любую другую вариацию, проверка не сработает.
+    Exact-Match: false
+    # Words or phrases can be written in either lowercase or uppercase and may contain spaces.
+    # !!! If a player has been muted by other plugins, the trigger word check will not work. !!!
+    # Trigger words are active only when the Chat-Mode parameter in the Listeners.yml file is set to CHECK.
+    # With Chat-Mode set to DISABLED or NORMAL, trigger words will not work.
+    # If a player types a phrase containing a trigger word among other words (e.g., "I cheat' message"),
+    # the check will only trigger if the trigger word is written alone, without other words.
+    #
+    # Слова или фразы могут быть записаны как в нижнем, так и в верхнем регистре и могут содержать пробелы.
+    # !!! Если игрок имеет мут от других плагинов, проверка триггерных слов не будет работать. !!!
+    # Триггерные слова активны только тогда, когда в файле Listeners.yml установлен параметр Chat-Mode: CHECK.
+    # При значениях Chat-Mode: DISABLED или Chat-Mode: NORMAL триггерные слова не будут работать.
+    # Если игрок написал фразу, содержащую триггерное слово среди других слов (например, "Просто 'Я чит' сообщения"),
+    # проверка сработает только в том случае, если триггерное слово написано, без других слов.
+    Trigger-Words:
+    - ''
+    # %initiator-player% replaced by the initiator's nickname. | заменяется на ник инициатора.
+    # %target-player% is replaced by the player's nickname. | заменяется на ник игрока.
+    #
+    # Available values:
+    # Command from the console without delay:
+    # - '(command)'
+    # Command from the console with a 5-second delay:
+    # - 'delay: 5 (command)'
+    # Command from the player being checked without delay:
+    # - 'player: (command)'
+    # Command from the player being checked with a 10-second delay:
+    # - 'delay: 10 player: (command)'
+    # Command from the player who initiated the check without delay:
+    # - 'player-initiator: (command)'
+    # Command from the player who initiated the check with a 15-second delay:
+    # - 'delay: 15 player-initiator: (command)'
+    #
+    # Доступные значения:
+    # Команда от консоли без задержки:
+    # - '(команда)'
+    # Команда от консоли с задержкой 5 секунд:
+    # - 'delay: 5 (команда)'
+    # Команда от имени игрока который на проверке без задержки:
+    # - 'player: (команда)'
+    # Команда от имени игрока который на проверке с задержкой 10 секунд:
+    # - 'delay: 10 player: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, без задержки:
+    # - 'player-initiator: (команда)'
+    # Команда от имени игрока, который вызвал проверку игрока, с задержкой 15 секунд:
+    # - 'delay: 15 player-initiator: (команда)'
+    #
+    Commands:
+    - 'player-initiator: tempban %target-player% 30d cheats'
+    Title-Trigger-Words-Initiator:
+      # Enables or disables on-screen messages?
+      # Включает или отключает сообщения на экран?
+      Enabled: false
+      # Time in ticks for the title to fade in (1 second = 20 ticks).
+      # Время появления заголовка в тиках (1 секунда = 20 тиков).
+      Fade-In-Time: 10
+      # Time in ticks (1 second = 20 ticks) during which the title stays on the screen.
+      # Время, в тиках (1 секунда = 20 тиков), в течение которого заголовок остается на экране.
+      Stay-Time: 70
+      # Time in ticks for the title to fade out (1 second = 20 ticks).
+      # Время исчезновения заголовка в тиках (1 секунда = 20 тиков).
+      Fade-Out-Time: 20
+    Title-Trigger-Words-Player:
+      # Enables or disables on-screen messages?
+      # Включает или отключает сообщения на экран?
+      Enabled: false
+      # Time in ticks for the title to fade in (1 second = 20 ticks).
+      # Время появления заголовка в тиках (1 секунда = 20 тиков).
+      Fade-In-Time: 10
+      # Time in ticks (1 second = 20 ticks) during which the title stays on the screen.
+      # Время, в тиках (1 секунда = 20 тиков), в течение которого заголовок остается на экране.
+      Stay-Time: 70
+      # Time in ticks for the title to fade out (1 second = 20 ticks).
+      # Время исчезновения заголовка в тиках (1 секунда = 20 тиков).
+      Fade-Out-Time: 20
+  Set-Block-Below-Player:
+    # Enables or disables the function of placing blocks below the player when the player is in the air.
+    # Включает или отключает функцию установки блоков под игроком, когда игрок находится в воздухе.
+    Enabled: true
+    # Specifies the type of block that will be placed below the player.
+    # Use any valid material from the Material enumeration in Minecraft.
+    # Examples: GLASS, STONE, DIRT.
+    # Ensure that the value is in uppercase to match the material name correctly.
+    # https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+    #
+    # Указывает тип блока, который будет установлен под игроком.
+    # Используйте любой допустимый материал из перечисления Material в Minecraft.
+    # Примеры значений: GLASS (стекло), STONE (камень), DIRT (земля).
+    # Для корректной работы значение должно соответствовать названию материала в верхнем регистре.
+    # https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+    Set-Block: GLASS
+    # The radius for placing blocks around the player in a circular shape.
+    # The maximum allowed value is 10.
+    # Радиус спавна блоков вокруг игрока в виде круга.
+    # Максимально допустимое значение - 10.
+    Radius: 3
+    # Y-offset down from the player's position to check the block directly below them.
+    # A value of -1 means checking one block below the player's position.
+    # If a different offset is needed, specify the appropriate value.
+    #
+    # Смещение вниз от игрока для проверки блока непосредственно под ним.
+    # Значение -1 означает, что проверка будет проводиться на один блок ниже позиции игрока.
+    # Если требуется другое смещение, укажите соответствующее значение.
+    Y-Offset-Down: -1
+    # Y-offset up from the player for placing the block.
+    # A value of 1 means the block will be placed directly under the player at the Y-Offset-Down point.
+    # If a different offset is needed, specify the appropriate value.
+    #
+    # Смещение вверх от игрока для установки блока.
+    # Значение 1 означает, что блок будет установлен непосредственно под игроком, в точке смещения Y-Offset-Down.
+    # Если требуется другое смещение, укажите соответствующее значение.
+    Y-Offset-Up: 1
+    # Enables or disables flight mode for the player when a check is initiated.
+    # I advise you not to turn it off, as it may kick the player.
+    # Включает или отключает режим полета для игрока, когда начинается проверка.
+    # Советую не отключать, так как может кикнуть игрока.
+    Give-Fly-On-Check-Start: true
+    # Specifies the pattern for placing blocks around the player.
+    # Options:
+    # - CIRCLE: Places blocks in a circular pattern.
+    # - SQUARE: Places blocks in a square pattern.
+    # - RANDOM: Places blocks randomly within the specified radius.
+    # Указывает шаблон размещения блоков вокруг игрока.
+    # Варианты:
+    # - CIRCLE: Блоки размещаются по кругу.
+    # - SQUARE: Блоки размещаются в форме квадрата.
+    # - RANDOM: Блоки размещаются случайным образом в заданном радиусе.
+    Pattern: CIRCLE
+  Timed-Messages:
+    # Enables or disables sending messages on a timer.
+    # Включает или отключает отправку сообщений по таймеру.
+    Enabled: true
+    # - '30: time30: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=30: Stay-Time=90: Fade-Out-Time=100'
+    # The value '30' indicates that the message will start displaying after 30 seconds.
+    # 'time30' is the key for the message text in the localization files.
+    # 'ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0' specifies the sound type and its parameters, where 'ENTITY_EXPERIENCE_ORB_PICKUP' is the sound type and '1.0; 1.0' are the pitch and volume.
+    # 'FadeInTime=30' - the duration of the message fade-in animation (in milliseconds).
+    # 'Stay-Time=90' - the duration the message will remain visible (in milliseconds).
+    # 'Fade-Out-Time=100' - the duration of the message fade-out animation (in milliseconds).
+    #
+    # - '30: time30: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=30: Stay-Time=90: Fade-Out-Time=100'
+    # Значение '30' означает, что сообщение начнет отображаться через 30 секунд.
+    # 'time30' - это ключ для текста сообщения в файлах локализации.
+    # 'ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0' - тон и громкость.
+    # 'FadeInTime=30' - время анимации появления сообщения (в миллисекундах).
+    # 'Stay-Time=90' - время, которое сообщение будет оставаться видимым (в миллисекундах).
+    # 'Fade-Out-Time=100' - время анимации исчезновения сообщения (в миллисекундах).
+    Messages:
+    - '30: time30: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=10: Stay-Time=70: Fade-Out-Time=20'
+    - '20: time20: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=10: Stay-Time=70: Fade-Out-Time=20'
+    - '10: time10: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=10: Stay-Time=70: Fade-Out-Time=20'
+    - '5: time5: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=10: Stay-Time=70: Fade-Out-Time=20'
+    - '3: time3: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=10: Stay-Time=70: Fade-Out-Time=20'
+    - '2: time2: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=10: Stay-Time=70: Fade-Out-Time=20'
+    - '1: time1: ENTITY_EXPERIENCE_ORB_PICKUP; 1.0; 1.0: FadeInTime=10: Stay-Time=70: Fade-Out-Time=20'
