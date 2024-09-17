@@ -10,6 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <!-- Highlight.js YAML language -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
     <style>
         body {
     font-family: Arial, sans-serif;
@@ -293,10 +295,13 @@ code {
         </div>
     </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+	
     <script>
         let currentEditId = '';
-	    // URL вашего YAML файла на GitHub
-    const yamlFileUrl = 'https://raw.githubusercontent.com/SnonSS/sCheckPlayer-Wiki/main/CmdArgConfess.yml';
+
+// URL вашего YAML файла на GitHub
+    const yamlFileUrl = 'https://raw.githubusercontent.com/<username>/<repo>/main/CmdArgConfess.yml';
 
     // Функция для загрузки и обработки YAML файла
     async function loadYamlFile() {
@@ -338,7 +343,7 @@ code {
 
     // Загружаем YAML файл при загрузке страницы
     window.onload = loadYamlFile;
-
+	    
 function updateNoCategoriesMessage() {
     var noCategoriesMessage = document.getElementById('noCategories');
     var categoryLinks = document.getElementById('categoryLinks').querySelectorAll('a').length;
