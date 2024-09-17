@@ -350,20 +350,25 @@ function updateNoCategoriesMessage() {
         }
 
         function addNewCategory() {
-            var categoryName = document.getElementById('categoryName').value;
-            var yamlContent = document.getElementById('yamlContent').value;
+    var categoryName = document.getElementById('categoryName').value;
+    var yamlContent = document.getElementById('yamlContent').value;
 
-            if (categoryName.trim() === '' || yamlContent.trim() === '') {
-                alert('Пожалуйста, заполните название категории и содержимое.');
-                return;
-            }
+    if (categoryName.trim() === '' || yamlContent.trim() === '') {
+        alert('Пожалуйста, заполните название категории и содержимое.');
+        return;
+    }
 
-            var sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
-            addSection(sectionId, categoryName, yamlContent);
+    var sections = JSON.parse(localStorage.getItem('sections')) || [];
+    sections.push({ name: categoryName, content: yamlContent });
 
-            document.getElementById('categoryName').value = '';
-            document.getElementById('yamlContent').value = '';
-        }
+    localStorage.setItem('sections', JSON.stringify(sections));
+
+    var sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
+    addSection(sectionId, categoryName, yamlContent);
+
+    document.getElementById('categoryName').value = '';
+    document.getElementById('yamlContent').value = '';
+}
 
         function editCategory(id) {
             currentEditId = id;
