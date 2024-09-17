@@ -317,7 +317,7 @@ function updateNoCategoriesMessage() {
         }
 
 // Функция для загрузки содержимого YAML файла с GitHub
-async function loadCategoryFromGitHub(url, name) {
+function loadCategoryFromGitHub(url, name) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
