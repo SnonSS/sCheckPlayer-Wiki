@@ -316,6 +316,26 @@ function updateNoCategoriesMessage() {
             document.getElementById(sectionId).classList.add('active');
         }
 
+// Функция для загрузки содержимого YAML файла с GitHub
+async function loadCategoryFromGitHub(url, name) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const yamlContent = await response.text();
+        const sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
+        addSection(sectionId, name, yamlContent);
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
+}
+
+// Пример использования функции для загрузки файла CmdArgConfess.yml
+document.addEventListener('DOMContentLoaded', () => {
+    loadCategoryFromGitHub('https://raw.githubusercontent.com/SnonSS/sCheckPlayer-Wiki/main/CmdArgConfess.yml', 'CmdArgConfess');
+});
+	    
         function addSection(id, title, yamlContent) {
             var contentDiv = document.querySelector('.content');
             
