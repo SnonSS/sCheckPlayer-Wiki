@@ -1,1 +1,0 @@
-# sCheckPlayer-Wiki
