@@ -15,8 +15,8 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #f4f4f4;
-            background-color: #121212;
+            color: #f4f4f4; /* Light text color for contrast */
+            background-color: #121212; /* Dark background color */
         }
 
         .container {
@@ -26,9 +26,9 @@
 
         .sidebar {
             width: 20%;
-            background-color: #1e1e1e;
+            background-color: #1e1e1e; /* Dark sidebar background */
             padding: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.3); /* Slightly darker shadow */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -43,34 +43,34 @@
             display: flex;
             align-items: center;
             padding: 10px 0;
-            color: #e0e0e0;
+            color: #e0e0e0; /* Light text color for links */
             text-decoration: none;
             cursor: pointer;
         }
 
         .sidebar a:hover {
-            background-color: #333;
+            background-color: #333; /* Darker background on hover */
         }
 
         .sidebar a .edit-icon, 
         .sidebar a .delete-icon {
-            margin-left: 3px;
+            margin-left: 3px; /* Change this value if needed */
         }
 
         .sidebar .edit-icon, .sidebar .delete-icon {
-            color: #80cbc4;
+            color: #80cbc4; /* Light teal color for icons */
         }
 
         .sidebar .edit-icon:hover {
-            color: #4db6ac;
+            color: #4db6ac; /* Darker teal color on hover */
         }
 
         .sidebar .delete-icon {
-            color: #ff5252;
+            color: #ff5252; /* Light red color for delete icon */
         }
 
         .sidebar .delete-icon:hover {
-            color: #e57373;
+            color: #e57373; /* Darker red color on hover */
         }
 
         .input-area {
@@ -82,27 +82,27 @@
             margin: 5px 0;
             padding: 10px;
             box-sizing: border-box;
-            background-color: #333;
-            color: #e0e0e0;
-            border: 1px solid #444;
+            background-color: #333; /* Dark input background */
+            color: #e0e0e0; /* Light text color */
+            border: 1px solid #444; /* Slightly lighter border */
         }
 
         .input-area button {
             padding: 10px;
-            background-color: #555;
-            color: #f4f4f4;
+            background-color: #555; /* Dark button background */
+            color: #f4f4f4; /* Light text color */
             border: none;
             cursor: pointer;
         }
 
         .input-area button:hover {
-            background-color: #666;
+            background-color: #666; /* Slightly lighter button background on hover */
         }
 
         .content {
             width: 80%;
             padding: 20px;
-            background-color: #1e1e1e;
+            background-color: #1e1e1e; /* Dark content background */
             overflow-y: auto;
         }
 
@@ -114,6 +114,7 @@
             display: block;
         }
 
+        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -123,48 +124,48 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.8); /* Darker background for modal */
         }
 
         .modal-content {
-            background-color: #1e1e1e;
-            margin: 5% auto;
+            background-color: #1e1e1e; /* Dark modal background */
+            margin: 5% auto; /* Adjusted margin for better centering */
             padding: 20px;
-            border: 1px solid #444;
-            width: 98%;
-            max-width: 1200px;
-            max-height: 90%;
-            overflow-y: auto;
+            border: 1px solid #444; /* Slightly lighter border */
+            width: 98%; /* Increased width */
+            max-width: 1200px; /* Increased maximum width */
+            max-height: 90%; /* Increased maximum height */
+            overflow-y: auto; /* Enable vertical scrolling if content is too long */
         }
 
         .modal h2 {
-            color: #e0e0e0;
-            margin-bottom: 25px;
+            color: #e0e0e0; /* Light color for heading */
+            margin-bottom: 25px; /* Added bottom margin for spacing */
         }
 
         .modal input, .modal textarea {
-            background-color: #333;
-            color: #e0e0e0;
-            border: 1px solid #444;
-            width: calc(100% - 20px);
-            margin-bottom: 25px;
+            background-color: #333; /* Dark background for inputs in modal */
+            color: #e0e0e0; /* Light text color for inputs in modal */
+            border: 1px solid #444; /* Slightly lighter border for inputs */
+            width: calc(100% - 20px); /* Full width minus padding */
+            margin-bottom: 25px; /* Added margin-bottom for spacing */
         }
 
         .modal textarea {
-            height: 300px;
+            height: 300px; /* Increased height for textarea */
         }
 
         .modal button {
-            background-color: #555;
-            color: #f4f4f4;
+            background-color: #555; /* Dark button background */
+            color: #f4f4f4; /* Light text color */
         }
 
         .modal button:hover {
-            background-color: #666;
+            background-color: #666; /* Slightly lighter button background on hover */
         }
 
         .modal-close {
-            color: #e0e0e0;
+            color: #e0e0e0; /* Light color for close icon */
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -172,14 +173,14 @@
 
         .modal-close:hover,
         .modal-close:focus {
-            color: #f4f4f4;
+            color: #f4f4f4; /* Lighter color on hover */
         }
 
         .home-button {
             display: block;
             margin: 10px 0;
             padding: 10px;
-            background-color: #007BFF;
+            background-color: #007BFF; /* Bright blue for home button */
             color: white;
             text-align: center;
             text-decoration: none;
@@ -188,48 +189,51 @@
         }
 
         .home-button:hover {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Darker blue on hover */
         }
 
+        /* Styling code blocks for YAML */
         pre {
-            background-color: #333;
-            color: #e0e0e0;
+            background-color: #333; /* Dark background for code blocks */
+            color: #e0e0e0; /* Light text color for code blocks */
             padding: 10px;
             border-radius: 5px;
-            overflow-x: auto;
+            overflow-x: auto; /* Enable horizontal scrolling if necessary */
         }
 
         code {
-            color: #e0e0e0;
+            color: #e0e0e0; /* Light text color for inline code */
         }
 
+        /* Syntax highlighting for Highlight.js */
         .hljs {
-            background: #333;
-            color: #e0e0e0;
+            background: #333; /* Dark background for syntax highlighting */
+            color: #e0e0e0; /* Light text color for syntax highlighting */
         }
 
+        /* Optional: Customize individual language syntax colors if needed */
         .hljs-keyword {
-            color: #ff79c6;
+            color: #ff79c6; /* Example color for keywords */
         }
-
         .hljs-string {
-            color: #f1fa8c;
+            color: #f1fa8c; /* Example color for strings */
         }
-
         .hljs-number {
-            color: #bd93f9;
+            color: #bd93f9; /* Example color for numbers */
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <div class="sidebar">
             <a class="home-button" onclick="showSection('home')">Главная страница</a>
             <div class="sidebar-content">
                 <h2>Категории</h2>
                 <div id="categoryLinks"></div>
-                <div id="noCategories" style="display: none;">Нет категорий</div>
+                <div id="noCategories" style="display: none;">Нет категорий</div> <!-- Added no categories message -->
             </div>
+            <!-- Add category buttons are now at the bottom of the sidebar -->
             <div class="input-area">
                 <input type="text" id="categoryName" placeholder="Введите название новой категории">
                 <textarea id="yamlContent" rows="5" placeholder="Введите содержимое"></textarea>
@@ -256,172 +260,125 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <!-- Modal for viewing -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeViewModal()">&times;</span>
+            <h2>Просмотр категории</h2>
+            <pre id="viewYamlContent"><code id="viewCode"></code></pre>
+        </div>
+    </div>
+
     <script>
-        let currentEditId = '';
-        const yamlFileUrl = 'https://raw.githubusercontent.com/SnonSS/sCheckPlayer-Wiki/main/CmdArgConfess.yml';
+        // Initialize Highlight.js
+        hljs.highlightAll();
 
-        async function loadYamlFile() {
-            try {
-                const response = await fetch(yamlFileUrl);
-                if (!response.ok) throw new Error('Network response was not ok');
-
-                const yamlText = await response.text();
-                const data = jsyaml.load(yamlText);
-
-                displayCategories(data);
-            } catch (error) {
-                console.error('Error loading YAML file:', error);
-            }
-        }
-
-        function displayCategories(data) {
-            const sidebarLinks = document.getElementById('categoryLinks');
-
-            Object.keys(data).forEach(categoryName => {
-                const yamlContent = data[categoryName];
-                const sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
-                
-                addSection(sectionId, categoryName, yamlContent);
-
-                const newLink = document.createElement('a');
-                newLink.href = '#';
-                newLink.innerHTML = categoryName + 
-                    ' <span class="edit-icon" onclick="editCategory(\'' + sectionId + '\')">&#9998;</span>' + 
-                    ' <span class="delete-icon" onclick="deleteCategory(\'' + sectionId + '\')">&#10060;</span>';
-                newLink.setAttribute('onclick', 'showSection(\'' + sectionId + '\')');
-                sidebarLinks.appendChild(newLink);
-            });
-
-            updateNoCategoriesMessage();
-        }
+        const categories = [];
 
         function showSection(sectionId) {
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
-
             document.getElementById(sectionId).classList.add('active');
         }
 
-        function addSection(id, title, yamlContent) {
-            const contentDiv = document.querySelector('.content');
-            
-            const newSection = document.createElement('div');
-            newSection.id = id;
-            newSection.classList.add('section');
-            
-            const heading = document.createElement('h1');
-            heading.innerText = title;
-            newSection.appendChild(heading);
+        function addNewCategory() {
+            const name = document.getElementById('categoryName').value.trim();
+            const yaml = document.getElementById('yamlContent').value.trim();
 
-            const preElement = document.createElement('pre');
-            preElement.innerHTML = '<code class="yaml">' + escapeHtml(yamlContent) + '</code>';
-            newSection.appendChild(preElement);
-
-            contentDiv.appendChild(newSection);
-
-            const sidebarLinks = document.getElementById('categoryLinks');
-            const newLink = document.createElement('a');
-            newLink.href = '#';
-            newLink.innerHTML = title + 
-                ' <span class="edit-icon" onclick="editCategory(\'' + id + '\')">&#9998;</span>' + 
-                ' <span class="delete-icon" onclick="deleteCategory(\'' + id + '\')">&#10060;</span>';
-            newLink.setAttribute('onclick', 'showSection(\'' + id + '\')');
-            sidebarLinks.appendChild(newLink);
-
-            hljs.highlightAll();
-
-            updateNoCategoriesMessage();
+            if (name && yaml) {
+                categories.push({ name, yaml });
+                updateCategoryLinks();
+                clearInputs();
+            } else {
+                alert('Пожалуйста, заполните все поля.');
+            }
         }
 
-        function addNewCategory() {
-            const categoryName = document.getElementById('categoryName').value;
-            const yamlContent = document.getElementById('yamlContent').value;
+        function updateCategoryLinks() {
+            const container = document.getElementById('categoryLinks');
+            container.innerHTML = '';
 
-            if (categoryName.trim() === '' || yamlContent.trim() === '') {
-                alert('Пожалуйста, заполните название категории и содержимое.');
+            if (categories.length === 0) {
+                document.getElementById('noCategories').style.display = 'block';
                 return;
+            } else {
+                document.getElementById('noCategories').style.display = 'none';
             }
 
-            const sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
-            addSection(sectionId, categoryName, yamlContent);
+            categories.forEach((category, index) => {
+                const link = document.createElement('a');
+                link.textContent = category.name;
+                link.href = '#';
+                link.onclick = () => showCategory(category.yaml, index);
+                
+                const editIcon = document.createElement('span');
+                editIcon.textContent = '✎';
+                editIcon.className = 'edit-icon';
+                editIcon.onclick = (event) => {
+                    event.stopPropagation();
+                    editCategory(index);
+                };
+                
+                const deleteIcon = document.createElement('span');
+                deleteIcon.textContent = '🗑️';
+                deleteIcon.className = 'delete-icon';
+                deleteIcon.onclick = (event) => {
+                    event.stopPropagation();
+                    deleteCategory(index);
+                };
 
+                link.appendChild(editIcon);
+                link.appendChild(deleteIcon);
+                container.appendChild(link);
+            });
+        }
+
+        function clearInputs() {
             document.getElementById('categoryName').value = '';
             document.getElementById('yamlContent').value = '';
         }
 
-        function editCategory(id) {
-            currentEditId = id;
-
-            const section = document.getElementById(id);
-            const title = section.querySelector('h1').innerText;
-            const yamlContent = section.querySelector('pre').innerText;
-
-            document.getElementById('editCategoryName').value = title;
-            document.getElementById('editYamlContent').value = yamlContent;
-
-            document.getElementById('editModal').style.display = 'block';
+        function showCategory(yaml, index) {
+            document.getElementById('viewCode').textContent = yaml;
+            document.getElementById('viewModal').style.display = 'block';
+            hljs.highlightElement(document.getElementById('viewCode'));
         }
 
-        function saveCategory() {
-            const newTitle = document.getElementById('editCategoryName').value;
-            const newYamlContent = document.getElementById('editYamlContent').value;
+        function closeViewModal() {
+            document.getElementById('viewModal').style.display = 'none';
+        }
 
-            const section = document.getElementById(currentEditId);
-            section.querySelector('h1').innerText = newTitle;
-            section.querySelector('pre').innerHTML = '<code class="yaml">' + escapeHtml(newYamlContent) + '</code>';
-
-            const link = document.querySelector('.sidebar a[href="#"][onclick*="' + currentEditId + '"]');
-            link.innerHTML = newTitle + 
-                ' <span class="edit-icon" onclick="editCategory(\'' + currentEditId + '\')">&#9998;</span>' + 
-                ' <span class="delete-icon" onclick="deleteCategory(\'' + currentEditId + '\')">&#10060;</span>';
-
-            hljs.highlightAll();
-
-            closeEditModal();
+        function editCategory(index) {
+            const category = categories[index];
+            document.getElementById('editCategoryName').value = category.name;
+            document.getElementById('editYamlContent').value = category.yaml;
+            document.getElementById('editModal').style.display = 'block';
+            document.getElementById('editModal').setAttribute('data-index', index);
         }
 
         function closeEditModal() {
             document.getElementById('editModal').style.display = 'none';
         }
 
-        function deleteCategory(id) {
-            const section = document.getElementById(id);
-            if (section) {
-                section.remove();
-            }
+        function saveCategory() {
+            const index = document.getElementById('editModal').getAttribute('data-index');
+            const name = document.getElementById('editCategoryName').value.trim();
+            const yaml = document.getElementById('editYamlContent').value.trim();
 
-            const link = document.querySelector('.sidebar a[href="#"][onclick*="' + id + '"]');
-            if (link) {
-                link.remove();
+            if (name && yaml) {
+                categories[index] = { name, yaml };
+                updateCategoryLinks();
+                closeEditModal();
+            } else {
+                alert('Пожалуйста, заполните все поля.');
             }
-
-            const sections = document.querySelectorAll('.section');
-            if (sections.length === 1 && sections[0].id === 'home') {
-                showSection('home');
-            }
-            
-            updateNoCategoriesMessage();
         }
 
-        function updateNoCategoriesMessage() {
-            const noCategoriesMessage = document.getElementById('noCategories');
-            const categoryLinks = document.getElementById('categoryLinks').querySelectorAll('a').length;
-
-            noCategoriesMessage.style.display = (categoryLinks === 0) ? 'block' : 'none';
+        function deleteCategory(index) {
+            categories.splice(index, 1);
+            updateCategoryLinks();
         }
-
-        function escapeHtml(html) {
-            return html.replace(/&/g, '&amp;')
-                       .replace(/</g, '&lt;')
-                       .replace(/>/g, '&gt;')
-                       .replace(/"/g, '&quot;')
-                       .replace(/'/g, '&#039;');
-        }
-
-        // Load YAML file on page load
-        window.onload = loadYamlFile;
     </script>
 </body>
 </html>
