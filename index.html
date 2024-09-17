@@ -317,7 +317,7 @@ function updateNoCategoriesMessage() {
         }
 
 // Функция для получения списка файлов в репозитории
-function getFileList(repoUrl) {
+async function getFileList(repoUrl) {
     try {
         const response = await fetch(repoUrl);
         if (!response.ok) {
@@ -331,7 +331,7 @@ function getFileList(repoUrl) {
 }
 
 // Функция для загрузки содержимого YAML файла с GitHub
-function loadCategoryFromGitHub(url, name) {
+async function loadCategoryFromGitHub(url, name) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -351,7 +351,7 @@ function filterYmlFiles(files) {
 }
 
 // Функция для загрузки всех файлов .yml
-function loadAllYmlFiles(repoApiUrl) {
+async function loadAllYmlFiles(repoApiUrl) {
     try {
         const files = await getFileList(repoApiUrl);
         const ymlFiles = filterYmlFiles(files);
