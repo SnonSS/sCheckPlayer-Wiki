@@ -295,6 +295,50 @@ code {
 
     <script>
         let currentEditId = '';
+	    // URL вашего YAML файла на GitHub
+    const yamlFileUrl = 'https://raw.githubusercontent.com/<username>/<repo>/main/CmdArgConfess.yml';
+
+    // Функция для загрузки и обработки YAML файла
+    async function loadYamlFile() {
+        try {
+            const response = await fetch(yamlFileUrl);
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            const yamlText = await response.text();
+            const data = jsyaml.load(yamlText);
+
+            // Обработка загруженных данных
+            displayCategories(data);
+        } catch (error) {
+            console.error('Error loading YAML file:', error);
+        }
+    }
+
+    // Функция для отображения категорий на сайте
+    function displayCategories(data) {
+        const sidebarLinks = document.getElementById('categoryLinks');
+
+        Object.keys(data).forEach(categoryName => {
+            const yamlContent = data[categoryName];
+            const sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
+            
+            addSection(sectionId, categoryName, yamlContent);
+
+            var newLink = document.createElement('a');
+            newLink.href = '#';
+            newLink.innerHTML = categoryName + 
+                ' <span class="edit-icon" onclick="editCategory(\'' + sectionId + '\')">&#9998;</span>' + 
+                ' <span class="delete-icon" onclick="deleteCategory(\'' + sectionId + '\')">&#10060;</span>';
+            newLink.setAttribute('onclick', 'showSection(\'' + sectionId + '\')');
+            sidebarLinks.appendChild(newLink);
+        });
+
+        updateNoCategoriesMessage();
+    }
+
+    // Загружаем YAML файл при загрузке страницы
+    window.onload = loadYamlFile;
+</script>
 
 function updateNoCategoriesMessage() {
     var noCategoriesMessage = document.getElementById('noCategories');
@@ -350,25 +394,20 @@ function updateNoCategoriesMessage() {
         }
 
         function addNewCategory() {
-    var categoryName = document.getElementById('categoryName').value;
-    var yamlContent = document.getElementById('yamlContent').value;
+            var categoryName = document.getElementById('categoryName').value;
+            var yamlContent = document.getElementById('yamlContent').value;
 
-    if (categoryName.trim() === '' || yamlContent.trim() === '') {
-        alert('Пожалуйста, заполните название категории и содержимое.');
-        return;
-    }
+            if (categoryName.trim() === '' || yamlContent.trim() === '') {
+                alert('Пожалуйста, заполните название категории и содержимое.');
+                return;
+            }
 
-    var sections = JSON.parse(localStorage.getItem('sections')) || [];
-    sections.push({ name: categoryName, content: yamlContent });
+            var sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
+            addSection(sectionId, categoryName, yamlContent);
 
-    localStorage.setItem('sections', JSON.stringify(sections));
-
-    var sectionId = 'section' + (document.querySelectorAll('.section').length + 1);
-    addSection(sectionId, categoryName, yamlContent);
-
-    document.getElementById('categoryName').value = '';
-    document.getElementById('yamlContent').value = '';
-}
+            document.getElementById('categoryName').value = '';
+            document.getElementById('yamlContent').value = '';
+        }
 
         function editCategory(id) {
             currentEditId = id;
